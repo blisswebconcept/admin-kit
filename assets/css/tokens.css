@@ -88,6 +88,14 @@
 	--bwc-shadow-card: 0 1px 2px oklch(0% 0 0 / 0.05);
 	--bwc-shadow-raised: 0 -4px 14px oklch(0% 0 0 / 0.06);
 	--bwc-shadow-stuck: 0 4px 12px oklch(0% 0 0 / 0.08); /* Under the header bar while it stays at the top. */
+
+	/* Scroll bars: a quiet thumb in the text colour on no track, darker under the pointer. */
+	--bwc-color-scrollbar: color-mix(in oklch, var(--bwc-color-text) 22%, transparent);
+	--bwc-color-scrollbar-hover: color-mix(in oklch, var(--bwc-color-text) 42%, transparent);
+
+	/* A row of tabs that scrolls fades out over this width at an edge with more past it. */
+	--bwc-scroll-fade: 40px;
+	--bwc-mask-solid: oklch(0% 0 0);
 	--bwc-shadow-overlay: -8px 0 24px oklch(0% 0 0 / 0.12);
 	--bwc-shadow-knob: 0 1px 2px oklch(0% 0 0 / 0.2);
 	--bwc-opacity-inactive: 0.55;

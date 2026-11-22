@@ -109,6 +109,41 @@ bwc.behaviour( '[data-bwc-settings]', ( form ) => {
 		} );
 	};
 
+	// The browser can't point at a field it can't show, so a save with a
+	// mistake in another group (or one the search hides, or in a closed fold)
+	// would do nothing at all. Open the way to the first one, and let the
+	// browser say what's wrong with it.
+	let pointing = false;
+	form.addEventListener( 'invalid', ( event ) => {
+		const field = event.target;
+		if ( pointing || ! field.closest || ! form.contains( field ) ) {
+			return;
+		}
+		pointing = true;
+		window.setTimeout( () => {
+			pointing = false;
+		} );
+
+		const search = form.querySelector( '[data-bwc-settings-search]' );
+		if ( search && '' !== search.value && field.closest( '[hidden]' ) ) {
+			search.value = '';
+			search.dispatchEvent( new Event( 'input' ) );
+		}
+		for ( let fold = field.closest( 'details:not([open])' ); fold; fold = fold.parentElement.closest( 'details:not([open])' ) ) {
+			fold.open = true;
+		}
+		const group = field.closest( '[data-bwc-settings-group]' );
+		if ( group && ! group.classList.contains( 'is-current' ) ) {
+			show( group.dataset.bwcSettingsGroup, false );
+		}
+		// If the browser still gave up (it checks before this ran), ask again.
+		window.setTimeout( () => {
+			if ( document.activeElement !== field ) {
+				field.reportValidity();
+			}
+		} );
+	}, true );
+
 	form.addEventListener( 'change', ( event ) => {
 		if ( event.target.matches( '[data-bwc-section-switch]' ) ) {
 			counts();

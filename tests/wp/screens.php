@@ -59,6 +59,7 @@ function bwc_test_settings_groups(): array {
 							'label'   => 'N',
 							'type'    => 'number',
 							'default' => 3,
+							'isValid' => array( 'max' => 100 ),
 							'path'    => 'other.n',
 						),
 					),
@@ -595,6 +596,34 @@ bwc_test(
 		$stored = get_option( 'bwc_test_screen' );
 		bwc_same( array( 'Again', false, 'ann@example.com' ), array( $stored['s1']['a'], $stored['modules']['s1'], $stored['s3']['e'] ), 'only what was posted changes' );
 		bwc_same( 'Settings saved.', $kit->notices()->take()[0]['text'], 'all good' );
+
+		// A value changed to fit is saved, and the notice names it: it may be in a group that isn't open.
+		$kit->actions()->dispatch( 'save_settings', array( 'bwc_test_screen' => array( 'other' => array( 'n' => '500' ) ) ) + $request );
+		bwc_same( 100, get_option( 'bwc_test_screen' )['other']['n'], 'clamped and saved' );
+		$notice = $kit->notices()->take()[0];
+		bwc_same(
+			array( 'info', 'Settings saved. 1 was changed to fit; see the note by it.', '#bwc-test-other-n' ),
+			array( $notice['tone'], $notice['text'], $notice['links'][0]['url'] ),
+			'a clamp alone: saved, with a link to its note'
+		);
+		$kit->notices()->take_fields( 'settings:bwc_test_screen' );
+
+		$kit->actions()->dispatch(
+			'save_settings',
+			array(
+				'bwc_test_screen' => array(
+					'other' => array( 'n' => '500' ),
+					's3'    => array( 'e' => 'not an email' ),
+				),
+			) + $request
+		);
+		$notice = $kit->notices()->take()[0];
+		bwc_same(
+			array( 'warning', 'Settings saved, except 1 that wasn\'t valid. It kept its old value. 1 other was changed to fit.', 2 ),
+			array( $notice['tone'], $notice['text'], count( $notice['links'] ) ),
+			'a mistake and a clamp: both named, both linked'
+		);
+		$kit->notices()->take_fields( 'settings:bwc_test_screen' );
 
 		remove_action( 'bwc_test_bwc_settings_settings_saved', $saved );
 		bwc_test_screen_cleanup();

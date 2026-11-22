@@ -1,0 +1,47 @@
+/**
+ * Scrolling.
+ *
+ * Every box in the kit that scrolls (a wide table, the drawer, the log's runs,
+ * a picker's results) gets a thin bar: a quiet thumb in the scheme's text
+ * colour on no track. Browsers without these properties keep their own.
+ */
+.bwc-scope,
+.bwc-scope * {
+	scrollbar-width: thin;
+	scrollbar-color: var(--bwc-color-scrollbar) transparent;
+}
+
+.bwc-scope :hover {
+	scrollbar-color: var(--bwc-color-scrollbar-hover) transparent;
+}
+
+/*
+ * A row of tabs that scrolls sideways shows no bar, which would cover the
+ * tabs. The edge with more tabs past it fades out instead (the scroll-row
+ * script sets is-more-start and is-more-end), a focused tab scrolls clear of
+ * the fade, and a mouse wheel scrolls the row. Without the script the bar shows.
+ */
+.bwc-nav--tabs,
+.bwc-panel__tabs {
+	--bwc-fade-start: 0px;
+	--bwc-fade-end: 0px;
+
+	scroll-padding-inline: var(--bwc-scroll-fade);
+	mask-image: linear-gradient(to right, transparent, var(--bwc-mask-solid) var(--bwc-fade-start), var(--bwc-mask-solid) calc(100% - var(--bwc-fade-end)), transparent);
+
+	&:is(.js *) {
+		scrollbar-width: none;
+	}
+
+	&.is-more-start {
+		--bwc-fade-start: var(--bwc-scroll-fade);
+	}
+
+	&.is-more-end {
+		--bwc-fade-end: var(--bwc-scroll-fade);
+	}
+
+	&:dir(rtl) {
+		mask-image: linear-gradient(to left, transparent, var(--bwc-mask-solid) var(--bwc-fade-start), var(--bwc-mask-solid) calc(100% - var(--bwc-fade-end)), transparent);
+	}
+}

@@ -170,7 +170,7 @@ final class LogScreen extends BaseScreen {
 				'per_page' => $this->per_page(),
 				'total'    => $total,
 				'labels'   => 'time',
-				'label'    => $this->kit->strings()->get( 'runs' ),
+				'label'    => $this->kit->strings()->get( 'runs_pages' ),
 				'url'      => fn( int $to ): string => $this->url(
 					array(
 						'run'          => '' === $run_id ? null : $run_id,

@@ -22,7 +22,7 @@ final class Form {
 	/**
 	 * A set of fields with their values and any messages.
 	 *
-	 * @param array<string, mixed> $props fields, storage (Storage), set, errors, notes, layout ("stack" or "table"), scoped (add the kit's root classes), summary (false when the screen lists the errors itself).
+	 * @param array<string, mixed> $props fields, storage (Storage), set, errors, notes, layout ("stack" or "table"), scoped (add the kit's root classes), summary (false when the screen lists the errors itself), summary_text (the summary's own words, such as a drawer's "Not saved: 1 field needs fixing.").
 	 */
 	public static function markup( array $props ): string {
 		$kit     = Kit::instance();
@@ -53,7 +53,7 @@ final class Form {
 			return $html;
 		}
 
-		$summary = false === ( $props['summary'] ?? true ) ? '' : self::summary( array_intersect_key( $errors, self::labels( $fields, $values ) ), self::labels( $fields, $values ), $kit->id() . '-' . $set );
+		$summary = false === ( $props['summary'] ?? true ) ? '' : self::summary( array_intersect_key( $errors, self::labels( $fields, $values ) ), self::labels( $fields, $values ), $kit->id() . '-' . $set, (string) ( $props['summary_text'] ?? '' ) );
 
 		return '<div class="' . esc_attr( trim( 'bwc-fields ' . $scope ) ) . '" data-bwc-fields="' . esc_attr( $set ) . '">' . $summary . $html . '</div>';
 	}
@@ -64,8 +64,9 @@ final class Form {
 	 * @param array<string, string> $errors  Field id => message.
 	 * @param array<string, string> $labels  Field id => label.
 	 * @param string                $id_base "{kit id}-{set}".
+	 * @param string                $text    Its own words instead of "N settings weren't saved…".
 	 */
-	public static function summary( array $errors, array $labels, string $id_base ): string {
+	public static function summary( array $errors, array $labels, string $id_base, string $text = '' ): string {
 		if ( ! $errors ) {
 			return '';
 		}
@@ -78,7 +79,7 @@ final class Form {
 		return Notice::markup(
 			array(
 				'tone'         => 'danger',
-				'text'         => Kit::instance()->strings()->count( 'fields_not_saved', count( $errors ) ),
+				'text'         => '' !== $text ? $text : Kit::instance()->strings()->count( 'fields_not_saved', count( $errors ) ),
 				'actions_html' => '<span class="bwc-fields__jump">' . implode( ' ', $links ) . '</span>',
 			)
 		);

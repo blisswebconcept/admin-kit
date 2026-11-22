@@ -2,6 +2,23 @@
 
 Admin Kit follows [semantic versioning](https://semver.org/). Until 1.0, a minor version (0.x.0) may change the PHP API; each one says what changed here.
 
+## Unreleased
+
+Found by clicking through a real plugin's settings, lists and drawers in a browser.
+
+- **Settings (bug fix):** saving with a mistake in a group that isn't open (or one the search hides, or in a closed Advanced fold) did nothing at all, because the browser can't point at a field it can't show. The group now opens and the browser says what's wrong.
+- **Settings:** the save notice also names values that were changed to fit (a number set to its limit), with a link to each, so a change in another group isn't missed: "Settings saved. 1 was changed to fit; see the note by it."
+- **Settings (bug fix):** a group shown on its own starts level with the side menu; only groups listed together by a search are spaced apart.
+- **Drawer (bug fix):** a failed save showed two notices, one saying "settings". It shows one, in the drawer's words, with a link to each field.
+- **Drawer:** the plugin's `save` can name the field its error is about (`new WP_Error( $code, $message, array( 'field' => 'slug' ) )`); the message is shown on that field, like the kit's own checks.
+- **Drawer:** closing it (Cancel, ×, Escape, the backdrop) asks first when something typed would be lost, including what a failed save left. `Drawer` takes `unsaved`.
+- **Form:** `summary_text` gives the error summary its own words.
+- **Fields (bug fix):** a field with a `prefix` shows its mistake with a red border, as other fields do.
+- **LogScreen (accessibility):** the run list's pages have their own name ("Newer and older runs"), not the list's.
+- **Scroll bars:** every box in the kit that scrolls (wide tables, the drawer, the log's runs, a picker's results) has a thin bar: a quiet thumb in the scheme's text colour on no track (`--bwc-color-scrollbar`, `--bwc-color-scrollbar-hover`).
+- **Header bar:** when its tabs don't fit beside the title, they take a row of their own under it (`is-tabs-below`, set by the screen-bar script), instead of scrolling on a desktop screen.
+- **Tab rows (bug fix):** a row of tabs that scrolls (the header's on a phone, a panel's) no longer shows a bar over the tabs. The edge with more tabs past it fades out (`--bwc-scroll-fade`), a focused tab scrolls clear of the fade, and a mouse wheel scrolls the row sideways until it ends. Without scripts the bar shows as before.
+
 ## 0.2.0 (2026-11-22)
 
 Found while moving a first real plugin onto the kit. A minor release: new options and two fixes; nothing a 0.1 plugin uses was removed, though `ListScreen`'s `before` now prints under the page title.

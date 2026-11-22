@@ -20,7 +20,7 @@ final class Assets {
 	/**
 	 * Strings every script needs.
 	 */
-	private const SCRIPT_STRINGS = array( 'copy', 'copied', 'copy_failed', 'saved', 'unsaved', 'retrying', 'job_done', 'expand_all', 'collapse_all', 'filter_shown', 'on_count', 'picker_search', 'picker_found', 'picker_more', 'picker_none', 'picker_failed', 'picker_remove', 'picker_chosen', 'ordered_moved', 'ordered_handle', 'ordered_add', 'ordered_hint', 'repeater_row', 'repeater_moved', 'added', 'removed', 'move_up', 'move_down', 'remove' );
+	private const SCRIPT_STRINGS = array( 'copy', 'copied', 'copy_failed', 'saved', 'unsaved', 'drawer_discard', 'retrying', 'job_done', 'expand_all', 'collapse_all', 'filter_shown', 'on_count', 'picker_search', 'picker_found', 'picker_more', 'picker_none', 'picker_failed', 'picker_remove', 'picker_chosen', 'ordered_moved', 'ordered_handle', 'ordered_add', 'ordered_hint', 'repeater_row', 'repeater_moved', 'added', 'removed', 'move_up', 'move_down', 'remove' );
 
 	/**
 	 * Background of a kit screen's page: a little lighter and cooler than WordPress's #f0f0f1.

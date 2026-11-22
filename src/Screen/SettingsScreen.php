@@ -279,24 +279,41 @@ final class SettingsScreen extends BaseScreen {
 		 */
 		do_action( $this->kit->name( 'settings_' . $this->hook() . '_saved' ), $after, $before, $this );
 
-		if ( ! $result['errors'] ) {
+		$errors = $result['errors'];
+		$notes  = $result['notes'];
+
+		if ( ! $errors && ! $notes ) {
 			return array(
 				'tone' => 'success',
 				'text' => $this->kit->strings()->get( 'settings_saved' ),
 			);
 		}
 
+		// A link to each field with a message: it may be in a group that isn't open.
 		$links = array();
-		foreach ( array_keys( $result['errors'] ) as $path ) {
+		foreach ( array_keys( $errors + $notes ) as $path ) {
 			$links[] = array(
 				'label' => $this->labels[ $path ] ?? (string) $path,
 				'url'   => '#' . $this->field_id( (string) $path ),
 			);
 		}
 
+		if ( ! $errors ) {
+			return array(
+				'tone'  => 'info',
+				'text'  => $this->kit->strings()->count( 'settings_adjusted', count( $notes ) ),
+				'links' => $links,
+			);
+		}
+
+		$text = $this->kit->strings()->count( 'settings_not_saved', count( $errors ) );
+		if ( $notes ) {
+			$text .= ' ' . $this->kit->strings()->count( 'settings_also_adjusted', count( $notes ) );
+		}
+
 		return array(
 			'tone'  => 'warning',
-			'text'  => $this->kit->strings()->count( 'settings_not_saved', count( $result['errors'] ) ),
+			'text'  => $text,
 			'links' => $links,
 		);
 	}

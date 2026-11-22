@@ -52,6 +52,11 @@
 	display: none;
 }
 
+/* Shown on its own, a group starts level with the side menu. */
+.bwc-settings__group:is(.js *) {
+	margin-block-start: 0;
+}
+
 .bwc-settings.is-searching .bwc-settings__group:not([hidden]) {
 	display: block;
 

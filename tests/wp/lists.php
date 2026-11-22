@@ -596,7 +596,13 @@ bwc_test(
 						'name' => 'Row ' . $id,
 						'url'  => 'https://example.com/',
 					),
-					'save'   => static function ( array $clean, $id ) use ( &$saved ): int {
+					'save'   => static function ( array $clean, $id ) use ( &$saved ): int|WP_Error {
+						if ( 'Taken' === $clean['name'] ) {
+							return new WP_Error( 'taken', 'That name is taken.', array( 'field' => 'name' ) );
+						}
+						if ( 'Broken' === $clean['name'] ) {
+							return new WP_Error( 'db', 'The database said no.', array( 'field' => 'nope' ) );
+						}
 						$saved = array( $clean, $id );
 						return 7;
 					},
@@ -655,6 +661,23 @@ bwc_test(
 		bwc_same( true, str_contains( $html, 'Not saved: 2 fields need fixing.' ), 'and says how many need fixing' );
 		bwc_same( true, str_contains( $html, 'That isn&#039;t a web address.' ) || str_contains( $html, 'That isn\'t a web address.' ), 'and the error' );
 		bwc_same( true, str_contains( $html, '<dialog class="bwc-drawer"' ) && str_contains( $html, 'name="_bwc_id" value="5"' ), 'a dialog posting the record\'s id' );
+		bwc_same( false, str_contains( $html, 'See the message' ), 'one notice, in the drawer\'s words, not a second one about settings' );
+		bwc_same( true, str_contains( $html, 'data-bwc-drawer-unsaved' ), 'closing asks first: what was typed would be lost' );
+
+		// The plugin's own check can name its field: shown there, like the kit's.
+		$post['bwc_test_bwc_drawer']['record'] = array(
+			'name' => 'Taken',
+			'url'  => 'https://example.org/',
+		);
+		$actions->dispatch( 'drawer_list', $post );
+		$html = $screen->render();
+		bwc_same( array( true, true, 1 ), array( str_contains( $html, 'Not saved: 1 field needs fixing.' ), (bool) preg_match( '/id="bwc-test-record-name"[^>]*aria-invalid="true"|aria-invalid="true"[^>]*id="bwc-test-record-name"/', $html ), substr_count( $html, 'That name is taken.' ) ), 'a save error with a field: on that field, once' );
+
+		$post['bwc_test_bwc_drawer']['record']['name'] = 'Broken';
+		$actions->dispatch( 'drawer_list', $post );
+		$html = $screen->render();
+		bwc_same( array( true, false ), array( str_contains( $html, 'The database said no.' ), str_contains( $html, 'needs fixing' ) ), 'a field it doesn\'t have: the message on its own' );
+		bwc_same( array(), $saved, 'still nothing saved' );
 
 		$post['bwc_test_bwc_drawer']['record'] = array(
 			'name' => 'Renamed',

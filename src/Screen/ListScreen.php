@@ -508,7 +508,16 @@ final class ListScreen extends BaseScreen {
 		$saved = ( $this->drawer['save'] )( array_merge( $values, $result['values'] ), '' === $id ? null : $id );
 
 		if ( is_wp_error( $saved ) ) {
-			$this->keep_draft( $id, (array) ( $posted['record'] ?? array() ), array(), $saved->get_error_message() );
+			// The plugin can name the field its message is about ( 'field' in the
+			// error's data ): it's shown on that field, like the kit's own checks.
+			$data  = $saved->get_error_data();
+			$field = is_array( $data ) && isset( $data['field'] ) ? (string) $data['field'] : '';
+
+			if ( '' !== $field && in_array( $field, array_map( static fn( array $one ): string => (string) $one['id'], $fields ), true ) ) {
+				$this->keep_draft( $id, (array) ( $posted['record'] ?? array() ), array( $field => $saved->get_error_message() ), $strings->count( 'record_not_saved', 1 ) );
+			} else {
+				$this->keep_draft( $id, (array) ( $posted['record'] ?? array() ), array(), $saved->get_error_message() );
+			}
 
 			return array( 'keep_open' => true );
 		}
@@ -1073,6 +1082,7 @@ final class ListScreen extends BaseScreen {
 		$close   = $this->link( $key, $view );
 		$title   = is_callable( $this->drawer['title'] ?? null ) ? (string) $this->drawer['title']( $record ) : $this->label;
 		$alert   = '';
+		$draft   = null;
 		$fields  = '';
 
 		if ( '' !== $id && null === $record ) {
@@ -1086,7 +1096,9 @@ final class ListScreen extends BaseScreen {
 			$draft  = $this->take_draft( $id );
 			$values = null === $draft ? (array) $record : array_merge( (array) $record, $draft['values'] );
 
-			if ( null !== $draft && '' !== $draft['message'] ) {
+			// Field messages come with the fields' own summary (with a link to each),
+			// in the drawer's words; a message about the whole record stands alone.
+			if ( null !== $draft && '' !== $draft['message'] && ! $draft['errors'] ) {
 				$alert = Notice::markup(
 					array(
 						'tone' => 'danger',
@@ -1102,10 +1114,11 @@ final class ListScreen extends BaseScreen {
 
 			$fields = Form::markup(
 				array(
-					'fields'  => (array) $this->drawer['fields'],
-					'storage' => new RecordStorage( $this->drawer_name(), $values ),
-					'set'     => 'record',
-					'errors'  => null === $draft ? array() : $draft['errors'],
+					'fields'       => (array) $this->drawer['fields'],
+					'storage'      => new RecordStorage( $this->drawer_name(), $values ),
+					'set'          => 'record',
+					'errors'       => null === $draft ? array() : $draft['errors'],
+					'summary_text' => null === $draft ? '' : $draft['message'],
 				)
 			);
 
@@ -1139,6 +1152,7 @@ final class ListScreen extends BaseScreen {
 					'hidden_html' => $editable ? $this->kit->actions()->fields( 'drawer_' . $this->hook() ) . '<input type="hidden" name="_bwc_id" value="' . esc_attr( $id ) . '">' : '',
 				),
 				'alert_html'        => $alert,
+				'unsaved'           => null !== $draft,
 				'footer_start_html' => $delete,
 				'footer_end_html'   => '<a class="bwc-button bwc-button--outline" href="' . esc_url( $close ) . '" data-bwc-drawer-close><span class="bwc-button__label">' . esc_html( $strings->get( 'cancel' ) ) . '</span></a>'
 					. ( $editable ? '<button type="submit" class="bwc-button bwc-button--primary"><span class="bwc-button__label">' . esc_html( (string) ( $this->drawer['save_label'] ?? $strings->get( 'save' ) ) ) . '</span></button>' : '' ),

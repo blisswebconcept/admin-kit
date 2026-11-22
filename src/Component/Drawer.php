@@ -12,7 +12,8 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Drawer. A server-rendered <dialog open>; the
  * script reopens it as a modal so the page behind is inert and focus stays
- * inside. Cancel, the backdrop and Escape follow the close link.
+ * inside. Cancel, the backdrop and Escape follow the close link, after asking
+ * when something typed would be lost.
  *
  * @phpstan-type DrawerProps array{
  *     id: string,
@@ -22,6 +23,7 @@ defined( 'ABSPATH' ) || exit;
  *     footer_start_html?: string,
  *     footer_end_html: string,
  *     alert_html?: string,
+ *     unsaved?: bool,
  * }
  */
 final class Drawer {
@@ -31,7 +33,7 @@ final class Drawer {
 	/**
 	 * The drawer.
 	 *
-	 * @param array<string, mixed> $props id, title, close_url, form (action, method, fields_html, hidden_html), footer_start_html, footer_end_html, alert_html.
+	 * @param array<string, mixed> $props id, title, close_url, form (action, method, fields_html, hidden_html), footer_start_html, footer_end_html, alert_html, unsaved (the form holds what a failed save left: closing asks first).
 	 * @phpstan-param DrawerProps $props
 	 */
 	public static function markup( array $props ): string {
@@ -44,7 +46,7 @@ final class Drawer {
 		$form  = (array) ( $props['form'] ?? array() );
 		$label = esc_html( \BlissWebConcept\AdminKit\Kit::instance()->strings()->get( 'close' ) );
 
-		$html  = '<dialog class="bwc-drawer" id="' . esc_attr( $id ) . '" open aria-labelledby="' . esc_attr( $id . '-title' ) . '" data-bwc-drawer>';
+		$html  = '<dialog class="bwc-drawer" id="' . esc_attr( $id ) . '" open aria-labelledby="' . esc_attr( $id . '-title' ) . '" data-bwc-drawer' . ( empty( $props['unsaved'] ) ? '' : ' data-bwc-drawer-unsaved' ) . '>';
 		$html .= '<a class="bwc-drawer__backdrop" href="' . $close . '" tabindex="-1" aria-hidden="true"></a>';
 		$html .= '<form class="bwc-drawer__panel" method="' . ( 'get' === ( $form['method'] ?? 'post' ) ? 'get' : 'post' ) . '" action="' . esc_url( (string) ( $form['action'] ?? '' ) ) . '" autocomplete="off">';
 		$html .= '<div class="bwc-drawer__head"><h2 class="bwc-drawer__title" id="' . esc_attr( $id . '-title' ) . '">' . esc_html( (string) $props['title'] ) . '</h2>';

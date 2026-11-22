@@ -44,6 +44,7 @@ final class Strings {
 			'discard'                   => __( 'Discard', 'bwc-admin-kit' ),
 			'saved'                     => __( 'All changes saved', 'bwc-admin-kit' ),
 			'unsaved'                   => __( 'You have unsaved changes', 'bwc-admin-kit' ),
+			'drawer_discard'            => __( 'Close without saving? What you changed here will be lost.', 'bwc-admin-kit' ),
 			'settings_saved'            => __( 'Settings saved.', 'bwc-admin-kit' ),
 			'find_setting'              => __( 'Find a setting', 'bwc-admin-kit' ),
 			'no_setting_match'          => __( 'No setting matches that. Try another word, or pick a group on the left.', 'bwc-admin-kit' ),
@@ -164,6 +165,10 @@ final class Strings {
 			'confirm_yes'               => __( 'Yes, go ahead', 'bwc-admin-kit' ),
 			/* translators: %d: number of settings that weren't saved. */
 			'settings_not_saved'        => _n_noop( 'Settings saved, except %d that wasn\'t valid. It kept its old value.', 'Settings saved, except %d that weren\'t valid. They kept their old values.', 'bwc-admin-kit' ),
+			/* translators: %d: number of settings changed to fit when saved (a number set to its limit). */
+			'settings_adjusted'         => _n_noop( 'Settings saved. %d was changed to fit; see the note by it.', 'Settings saved. %d were changed to fit; see the notes by them.', 'bwc-admin-kit' ),
+			/* translators: %d: number of other settings changed to fit when saved. */
+			'settings_also_adjusted'    => _n_noop( '%d other was changed to fit.', '%d others were changed to fit.', 'bwc-admin-kit' ),
 			'settings_groups'           => __( 'Setting groups', 'bwc-admin-kit' ),
 			'settings_search_hint'      => __( 'Type a word…', 'bwc-admin-kit' ),
 			/* translators: %s: name of another feature, such as "Voting". */
@@ -193,6 +198,7 @@ final class Strings {
 			'job_stopped'               => __( 'Stopped. What was done so far is kept.', 'bwc-admin-kit' ),
 			'job_skipped'               => __( 'Some items were skipped because working on them kept stopping the request.', 'bwc-admin-kit' ),
 			'runs'                      => __( 'Runs', 'bwc-admin-kit' ),
+			'runs_pages'                => __( 'Newer and older runs', 'bwc-admin-kit' ),
 			'not_known'                 => __( 'Not known', 'bwc-admin-kit' ),
 			/* translators: %s: the table's caption. Names the box a wide table scrolls in. */
 			'table_region'              => __( '%s, table', 'bwc-admin-kit' ),

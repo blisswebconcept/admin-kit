@@ -101,11 +101,25 @@
 	font-size: var(--bwc-font-size-sm);
 }
 
-/* The tabs keep their own width; only once the brand is down to 200px do they scroll inside the bar, so they never push the version onto its own row. */
+/*
+ * The tabs keep their own width beside the brand. When they don't fit there
+ * (the brand is down to 200px), the screen-bar script gives the bar
+ * "is-tabs-below" and they take a row of their own under the brand; only if
+ * they still don't fit do they scroll. Without the script they scroll beside it.
+ */
 .bwc-screen__nav {
 	display: flex;
 	flex: 0 1 auto;
 	min-inline-size: 0;
+}
+
+.bwc-screen__bar.is-tabs-below {
+	flex-wrap: wrap;
+
+	& .bwc-screen__nav {
+		flex-basis: 100%;
+		order: 3;
+	}
 }
 
 .bwc-screen__actions {
