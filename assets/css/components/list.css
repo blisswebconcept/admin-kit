@@ -1,0 +1,65 @@
+/**
+ * List screen: the toolbar, the rows' box and
+ * the empty state. Table, chips, pagination and drawer are their own parts.
+ */
+
+.bwc-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-5);
+}
+
+.bwc-list__toolbar {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-3);
+}
+
+.bwc-list__filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bwc-space-2) var(--bwc-space-4);
+}
+
+.bwc-list__controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: var(--bwc-space-3);
+
+	& .bwc-search {
+		flex: 1 1 260px;
+		max-inline-size: 420px;
+	}
+}
+
+.bwc-list__check {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--bwc-space-2);
+	min-block-size: var(--bwc-control-height);
+	color: var(--bwc-color-text);
+}
+
+.bwc-scope .bwc-list__clear {
+	display: inline-flex;
+	align-items: center;
+	min-block-size: var(--bwc-control-height);
+	color: var(--bwc-color-accent);
+}
+
+/* The rows sit edge to edge in the panel; the bulk picker keeps the panel's padding. */
+.bwc-list .bwc-table-bulk {
+	margin: 0;
+	padding: var(--bwc-space-3) var(--bwc-space-6);
+	border-block-end: 1px solid var(--bwc-color-border-weak);
+}
+
+.bwc-list .bwc-table-wrap {
+	border: 0;
+	border-radius: 0;
+}
+
+.bwc-list__empty {
+	padding: var(--bwc-space-6);
+}

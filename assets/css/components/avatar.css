@@ -1,0 +1,23 @@
+/**
+ * Avatar.
+ */
+
+.bwc-avatar {
+	display: inline-grid;
+	flex: none;
+	place-items: center;
+	inline-size: 28px;
+	block-size: 28px;
+	border-radius: 50%;
+	background: var(--bwc-color-accent-soft);
+	color: var(--bwc-color-accent-strong);
+	font-size: var(--bwc-font-size-sm);
+	font-weight: var(--bwc-font-weight-strong);
+	line-height: 1;
+}
+
+.bwc-avatar--large {
+	inline-size: 56px;
+	block-size: 56px;
+	font-size: var(--bwc-font-size-xl);
+}

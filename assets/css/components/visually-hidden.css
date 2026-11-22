@@ -1,0 +1,13 @@
+/**
+ * Visually hidden: text for screen readers only.
+ */
+
+.bwc-visually-hidden {
+	position: absolute;
+	inline-size: 1px;
+	block-size: 1px;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}

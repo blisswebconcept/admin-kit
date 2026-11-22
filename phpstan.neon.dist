@@ -1,0 +1,10 @@
+includes:
+	- vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+	level: 6
+	paths:
+		- src
+	# Props are documented as array shapes, but plugins can pass anything at
+	# run time, so components keep their defensive checks.
+	treatPhpDocTypesAsCertain: false

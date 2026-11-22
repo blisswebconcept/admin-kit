@@ -1,0 +1,181 @@
+/**
+ * Settings section: a card with a title,
+ * a description, an optional on/off switch, and its fields. When the switch
+ * is off the fields are hidden (still sent, so nothing is lost) and a line
+ * says how many there are.
+ */
+
+.bwc-section {
+	margin-block-end: var(--bwc-space-4);
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-xl);
+	background: var(--bwc-color-surface);
+	box-shadow: var(--bwc-shadow-card);
+}
+
+.bwc-section__head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--bwc-space-4);
+	padding: var(--bwc-space-5) var(--bwc-space-6);
+}
+
+.bwc-section__text {
+	min-inline-size: 0;
+}
+
+.bwc-scope .bwc-section__title {
+	margin: 0;
+	padding: 0;
+	font-size: var(--bwc-font-size-lg);
+	font-weight: var(--bwc-font-weight-strong);
+	line-height: 1.4;
+}
+
+/* "In Offers", shown while searching so a match says where it lives. */
+.bwc-section__group {
+	display: none;
+	margin-inline-start: var(--bwc-space-1);
+	border-radius: var(--bwc-radius-sm);
+	background: var(--bwc-color-ground);
+	padding: 0 6px;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+	font-weight: 400;
+	vertical-align: 1px;
+}
+
+.is-searching .bwc-section__group {
+	display: inline-block;
+}
+
+.bwc-scope .bwc-section__description {
+	max-inline-size: 66ch;
+	margin: var(--bwc-space-1) 0 0;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-scope .bwc-section__link {
+	display: inline-block;
+	margin-block-start: 6px;
+	color: var(--bwc-color-accent);
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-section__switch {
+	flex: none;
+	margin-block: -6px;
+}
+
+.bwc-section__paused {
+	padding: 0 var(--bwc-space-6) var(--bwc-space-4);
+}
+
+.bwc-section__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-5);
+	border-block-start: 1px solid var(--bwc-color-ground);
+	padding: var(--bwc-space-5) var(--bwc-space-6) var(--bwc-space-6);
+}
+
+.bwc-section--plain .bwc-section__body {
+	border-block-start: 0;
+}
+
+.bwc-scope .bwc-section__off {
+	display: none;
+	margin: 0;
+	border-block-start: 1px solid var(--bwc-color-ground);
+	padding: var(--bwc-space-3) var(--bwc-space-6);
+	color: var(--bwc-color-text-faint);
+	font-size: var(--bwc-font-size-md);
+}
+
+/* Off: fields hidden, unless one of them didn't save and needs fixing. */
+.bwc-section:has(.bwc-section__switch .bwc-switch__input:not(:checked)):not(:has(.bwc-field.is-invalid)) {
+	& .bwc-section__body,
+	& .bwc-section__paused {
+		display: none;
+	}
+
+	& .bwc-section__off {
+		display: block;
+	}
+}
+
+.bwc-section--danger {
+	border-color: var(--bwc-color-danger-border);
+
+	& .bwc-section__title {
+		color: var(--bwc-color-danger-text);
+	}
+
+	& .bwc-section__body {
+		border-block-start: 0;
+		padding-block-start: 0;
+	}
+}
+
+/* In a panel (tabs), sections are rows divided by a line; the danger one stays a card. */
+.bwc-settings--tabs .bwc-section {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+
+	& + .bwc-section {
+		border-block-start: 1px solid var(--bwc-color-border);
+	}
+
+	& .bwc-section__head {
+		padding-inline: 0;
+	}
+
+	& .bwc-section__paused,
+	& .bwc-section__body,
+	& .bwc-section__off {
+		padding-inline: 0;
+	}
+
+	& .bwc-section__body {
+		border-block-start: 0;
+		padding-block-start: 0;
+	}
+
+	& .bwc-section__off {
+		border-block-start: 0;
+		padding-block: 0 var(--bwc-space-5);
+	}
+}
+
+.bwc-settings--tabs .bwc-section--danger {
+	margin-block-start: var(--bwc-space-6);
+	border: 1px solid var(--bwc-color-danger-border);
+	border-radius: var(--bwc-radius-xl);
+
+	& .bwc-section__head,
+	& .bwc-section__body {
+		padding-inline: var(--bwc-space-6);
+	}
+}
+
+/* After another row, the row line would win over the danger border. */
+.bwc-settings--tabs .bwc-section + .bwc-section--danger {
+	border-block-start-color: var(--bwc-color-danger-border);
+}
+
+@container bwc-settings (inline-size < 560px) {
+	.bwc-section__head {
+		padding-inline: var(--bwc-space-4);
+	}
+
+	.bwc-section__paused,
+	.bwc-section__body,
+	.bwc-scope .bwc-section__off {
+		padding-inline: var(--bwc-space-4);
+	}
+}

@@ -1,0 +1,148 @@
+/**
+ * Settings screen: layout, groups, search
+ * and the "nothing matches" line. Section cards are in section.css, the save
+ * bar in savebar.css.
+ */
+
+.bwc-settings {
+	container: bwc-settings / inline-size;
+}
+
+.bwc-scope .bwc-settings__intro {
+	max-inline-size: 72ch;
+	margin: 0 0 var(--bwc-space-6);
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-lg);
+}
+
+/* Side menu and groups. */
+.bwc-settings__layout {
+	display: grid;
+	grid-template-columns: 240px minmax(0, 1fr);
+	align-items: start;
+	gap: var(--bwc-space-6) 32px;
+}
+
+.bwc-settings__side {
+	position: sticky;
+	inset-block-start: var(--bwc-sticky-offset, 56px);
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-4);
+}
+
+.bwc-settings__main {
+	min-inline-size: 0;
+}
+
+.bwc-settings__group {
+	scroll-margin-block-start: var(--bwc-sticky-offset, 56px);
+
+	& + .bwc-settings__group {
+		margin-block-start: 40px;
+	}
+}
+
+/*
+ * With scripts on (WordPress puts "js" on the body before the page is drawn),
+ * one group shows at a time; the script switches them. Without scripts every
+ * group shows, one after another.
+ */
+.bwc-settings__group:not(.is-current):is(.js *) {
+	display: none;
+}
+
+.bwc-settings.is-searching .bwc-settings__group:not([hidden]) {
+	display: block;
+
+	& + .bwc-settings__group {
+		margin-block-start: var(--bwc-space-6);
+	}
+}
+
+.bwc-scope .bwc-settings__group-title {
+	margin: 0;
+	padding: 0;
+	font-size: var(--bwc-font-size-xl);
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.bwc-scope .bwc-settings__group-intro {
+	max-inline-size: 72ch;
+	margin: var(--bwc-space-1) 0 0;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-lg);
+}
+
+.bwc-settings__group-title + .bwc-section,
+.bwc-settings__group-intro + .bwc-section {
+	margin-block-start: 18px;
+}
+
+.bwc-scope .bwc-settings__empty {
+	margin: 0;
+	border: 1px dashed var(--bwc-color-border-strong);
+	border-radius: var(--bwc-radius-xl);
+	padding: 32px var(--bwc-space-6);
+	color: var(--bwc-color-text-muted);
+	text-align: center;
+}
+
+/* Tabs: the groups sit in a panel; sections are rows in it, not cards. */
+.bwc-settings--tabs {
+	& .bwc-panel__toolbar .bwc-search {
+		max-inline-size: 320px;
+	}
+
+	& .bwc-settings__group {
+		padding: var(--bwc-space-2) var(--bwc-space-6) var(--bwc-space-6);
+	}
+
+	& .bwc-settings__group + .bwc-settings__group {
+		margin-block-start: 0;
+	}
+
+	& .bwc-settings__group-intro {
+		margin-block-start: var(--bwc-space-4);
+	}
+
+	& .bwc-settings__empty {
+		margin: var(--bwc-space-6);
+	}
+}
+
+/* The tab already names the group, so its heading is for screen readers only. */
+.bwc-settings--tabs .bwc-settings__group-title:is(.js *) {
+	position: absolute;
+	inline-size: 1px;
+	block-size: 1px;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.bwc-settings--tabs.is-searching .bwc-settings__group-title {
+	position: static;
+	inline-size: auto;
+	block-size: auto;
+	margin: var(--bwc-space-4) 0 0;
+	overflow: visible;
+	clip-path: none;
+	font-size: var(--bwc-font-size-lg);
+}
+
+@container bwc-settings (inline-size < 760px) {
+	.bwc-settings__layout {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.bwc-settings__side {
+		position: static;
+	}
+
+	.bwc-settings--tabs .bwc-settings__group {
+		padding-inline: var(--bwc-space-4);
+	}
+}

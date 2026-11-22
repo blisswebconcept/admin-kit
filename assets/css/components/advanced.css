@@ -1,0 +1,25 @@
+/**
+ * Advanced section: expert settings under a
+ * closed fold. Settings sections also use it for their reference tables.
+ */
+
+.bwc-advanced {
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-lg);
+}
+
+.bwc-scope .bwc-advanced__summary {
+	padding: 10px var(--bwc-space-4);
+	color: var(--bwc-color-text);
+	font-weight: var(--bwc-font-weight-strong);
+	cursor: pointer;
+
+	&:hover {
+		color: var(--bwc-color-accent-strong);
+	}
+}
+
+.bwc-advanced__body {
+	border-block-start: 1px solid var(--bwc-color-ground);
+	padding: var(--bwc-space-4);
+}

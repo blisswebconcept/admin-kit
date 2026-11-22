@@ -1,0 +1,121 @@
+/**
+ * Grouped list. Every table has the same colgroup
+ * and a fixed layout, so the columns line up from group to group.
+ */
+
+.bwc-grouped {
+	position: relative; /* Keeps hidden screen-reader text inside the scrolling box, so it can't widen the page. */
+	max-inline-size: 100%;
+	overflow-x: auto;
+}
+
+.bwc-grouped__columns,
+.bwc-grouped__table {
+	inline-size: 100%;
+	min-inline-size: 640px;
+	border-collapse: collapse;
+	table-layout: fixed;
+
+	& th,
+	& td {
+		padding: var(--bwc-space-2) var(--bwc-space-3);
+		text-align: start;
+		vertical-align: middle;
+	}
+}
+
+.bwc-grouped--wide {
+	& .bwc-grouped__columns,
+	& .bwc-grouped__table,
+	& .bwc-grouped__group {
+		min-inline-size: 900px;
+	}
+}
+
+/* Fixed columns: what doesn't fit is cut at the cell's edge, never drawn over the next one. */
+.bwc-grouped__table td {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.bwc-grouped__columns th {
+	border-block-end: 1px solid var(--bwc-color-border);
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+	font-weight: var(--bwc-font-weight-strong);
+	white-space: nowrap;
+}
+
+.bwc-grouped .bwc-table__number {
+	font-variant-numeric: tabular-nums;
+	text-align: end;
+}
+
+.bwc-grouped__group {
+	min-inline-size: 640px;
+	border-block-end: 1px solid var(--bwc-color-border);
+	padding-block: var(--bwc-space-3);
+}
+
+.bwc-grouped__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--bwc-space-1) var(--bwc-space-3);
+	padding: 0 var(--bwc-space-3) var(--bwc-space-1);
+}
+
+.bwc-scope .bwc-grouped__title {
+	margin: 0;
+	padding: 0;
+	font-size: var(--bwc-font-size-lg);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-grouped__meta {
+	margin: 0;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-grouped__summary {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px var(--bwc-space-3);
+	color: var(--bwc-color-accent);
+	font-size: var(--bwc-font-size-md);
+	list-style: none;
+	cursor: pointer;
+
+	&::-webkit-details-marker {
+		display: none;
+	}
+
+	&:hover {
+		color: var(--bwc-color-accent-strong);
+	}
+}
+
+.bwc-grouped__chevron {
+	display: inline-flex;
+	transition: rotate var(--bwc-duration);
+}
+
+.bwc-grouped__more-hide {
+	display: none;
+}
+
+.bwc-grouped__more[open] {
+	& .bwc-grouped__chevron {
+		rotate: 90deg;
+	}
+
+	& .bwc-grouped__more-show {
+		display: none;
+	}
+
+	& .bwc-grouped__more-hide {
+		display: inline;
+	}
+}

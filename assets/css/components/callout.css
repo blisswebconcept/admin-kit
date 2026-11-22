@@ -1,0 +1,46 @@
+/**
+ * Callout.
+ */
+
+.bwc-callout {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--bwc-space-3);
+	border-radius: var(--bwc-radius-md);
+	background: var(--bwc-color-info-soft);
+	padding: var(--bwc-space-3) 14px;
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-callout__mark {
+	display: grid;
+	flex: none;
+	place-items: center;
+	inline-size: 20px;
+	block-size: 20px;
+	border-radius: 50%;
+	background: var(--bwc-color-info-text);
+	color: var(--bwc-color-on-accent);
+	font-size: var(--bwc-font-size-sm);
+	font-weight: 700;
+}
+
+.bwc-callout__body {
+	min-inline-size: 0;
+
+	& p {
+		margin: 0;
+	}
+
+	& p + p {
+		margin-block-start: var(--bwc-space-2);
+	}
+}
+
+.bwc-callout--warning {
+	background: var(--bwc-color-warning-soft);
+
+	& .bwc-callout__mark {
+		background: var(--bwc-color-warning-text);
+	}
+}

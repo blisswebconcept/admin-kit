@@ -1,0 +1,117 @@
+/**
+ * Drawer. Without scripts it's a section
+ * after the list; the script opens it as a modal dialog, which shows as a
+ * side panel over the page.
+ */
+
+.bwc-drawer {
+	position: static;
+	inline-size: auto;
+	max-inline-size: 720px;
+	margin: var(--bwc-space-6) 0 0;
+	border: 0;
+	background: none;
+	padding: 0;
+	color: inherit;
+}
+
+.bwc-drawer__backdrop {
+	display: none;
+}
+
+.bwc-drawer__panel {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-xl);
+	background: var(--bwc-color-surface);
+	box-shadow: var(--bwc-shadow-card);
+}
+
+.bwc-drawer__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--bwc-space-3);
+	border-block-end: 1px solid var(--bwc-color-border-weak);
+	padding: var(--bwc-space-4) var(--bwc-space-6);
+}
+
+.bwc-scope .bwc-drawer__title {
+	min-inline-size: 0;
+	margin: 0;
+	padding: 0;
+	font-size: var(--bwc-font-size-xl);
+	font-weight: 700;
+	line-height: 1.3;
+	overflow-wrap: anywhere;
+}
+
+.bwc-drawer__body {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	gap: var(--bwc-space-4);
+	padding: var(--bwc-space-6);
+	overflow-y: auto;
+}
+
+.bwc-drawer__aside {
+	border-block-start: 1px solid var(--bwc-color-border-weak);
+	padding-block-start: var(--bwc-space-4);
+	color: var(--bwc-color-text-muted);
+}
+
+.bwc-drawer__foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--bwc-space-3);
+	border-block-start: 1px solid var(--bwc-color-border-weak);
+	padding: var(--bwc-space-4) var(--bwc-space-6);
+}
+
+.bwc-drawer__foot-start,
+.bwc-drawer__foot-end {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bwc-space-2);
+}
+
+.bwc-drawer__foot-end {
+	margin-inline-start: auto;
+}
+
+/* Opened by the script as a modal: a full-height panel on the end side. */
+.bwc-drawer:modal {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	justify-content: flex-end;
+	inline-size: 100%;
+	max-inline-size: none;
+	block-size: 100%;
+	max-block-size: none;
+	margin: 0;
+
+	&::backdrop {
+		background: transparent;
+	}
+
+	& .bwc-drawer__backdrop {
+		position: absolute;
+		inset: 0;
+		display: block;
+		background: var(--bwc-color-backdrop);
+	}
+
+	& .bwc-drawer__panel {
+		position: relative;
+		inline-size: min(100%, 520px);
+		block-size: 100%;
+		border: 0;
+		border-radius: 0;
+		box-shadow: var(--bwc-shadow-overlay);
+	}
+}

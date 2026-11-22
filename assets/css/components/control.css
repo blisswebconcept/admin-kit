@@ -1,0 +1,109 @@
+/**
+ * Control, label and prefixed input.
+ * Select rules set only the background colour, so WordPress's arrow stays.
+ */
+
+.bwc-label {
+	display: block;
+	margin-block-end: var(--bwc-space-1);
+	color: var(--bwc-color-text);
+	font-size: var(--bwc-font-size-md);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-scope .bwc-control {
+	min-block-size: var(--bwc-control-height-sm);
+	max-inline-size: 100%;
+	margin: 0;
+	border: 1px solid var(--bwc-color-control-border);
+	border-radius: var(--bwc-radius-md);
+	background-color: var(--bwc-color-surface);
+	padding: 0 10px;
+	color: var(--bwc-color-text);
+	font-family: inherit;
+	font-size: var(--bwc-font-size-base);
+	line-height: 1.4;
+	box-shadow: none;
+
+	&:focus {
+		border-color: var(--bwc-color-accent);
+		box-shadow: none;
+	}
+
+	&:disabled {
+		background-color: var(--bwc-color-ground);
+		color: var(--bwc-color-text-faint);
+	}
+
+	&[aria-invalid="true"] {
+		border-color: var(--bwc-color-danger);
+	}
+}
+
+.bwc-scope select.bwc-control {
+	padding-inline-end: 28px;
+}
+
+.bwc-control--full {
+	inline-size: 100%;
+}
+
+.bwc-control--number {
+	inline-size: 90px;
+}
+
+/* With the scope prefix, like the base rule, or the base rule's font wins. */
+.bwc-scope .bwc-control--mono {
+	font-family: var(--bwc-font-family-mono);
+}
+
+.bwc-scope .bwc-control--textarea {
+	padding-block: var(--bwc-space-2);
+	line-height: 1.5;
+}
+
+.bwc-prefixed {
+	display: flex;
+	align-items: stretch;
+	max-inline-size: 100%;
+	overflow: hidden;
+	border: 1px solid var(--bwc-color-control-border);
+	border-radius: var(--bwc-radius-md);
+	background: var(--bwc-color-surface);
+
+	&:focus-within {
+		border-color: var(--bwc-color-accent);
+		outline: var(--bwc-focus-width) solid var(--bwc-color-focus);
+		outline-offset: 2px;
+	}
+}
+
+.bwc-prefixed__prefix {
+	display: flex;
+	align-items: center;
+	border-inline-end: 1px solid var(--bwc-color-border);
+	background: var(--bwc-color-surface-soft);
+	padding: 0 10px;
+	color: var(--bwc-color-text-muted);
+	white-space: nowrap;
+}
+
+.bwc-scope .bwc-prefixed__input {
+	flex: 1 1 auto;
+	min-inline-size: 0;
+	min-block-size: 34px;
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	padding: 0 10px;
+	color: var(--bwc-color-text);
+	font-size: var(--bwc-font-size-base);
+	box-shadow: none;
+
+	&:focus,
+	&:focus-visible {
+		outline: 0;
+		box-shadow: none;
+	}
+}

@@ -1,0 +1,69 @@
+{
+  "rules": {
+    "selector-class-pattern": [
+      "^(bwc-[a-z0-9]+(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?|is-[a-z]+(-[a-z]+)*|wrap|wp-header-end|js)$",
+      {
+        "message": "Use BEM with the bwc- prefix (bwc-block__element--modifier), is-* for states."
+      }
+    ],
+    "selector-max-id": 0,
+    "declaration-no-important": true,
+    "color-no-hex": true,
+    "color-named": "never",
+    "function-disallowed-list": [
+      "rgb",
+      "rgba",
+      "hsl",
+      "hsla",
+      "oklch",
+      "oklab",
+      "lab",
+      "lch",
+      "hwb",
+      "color"
+    ],
+    "property-disallowed-list": [
+      [
+        "/^margin-(left|right|top|bottom)$/",
+        "/^padding-(left|right|top|bottom)$/",
+        "/^border-(left|right|top|bottom)(-|$)/",
+        "/^(min-|max-)?(width|height)$/",
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ],
+      {
+        "message": "Use logical properties (inline/block)."
+      }
+    ],
+    "selector-disallowed-list": [
+      [
+        "/\\[data-bwc-/"
+      ],
+      {
+        "message": "CSS never selects by data-bwc-*: those are script hooks only."
+      }
+    ],
+    "declaration-property-value-disallowed-list": {
+      "/^animation(-name)?$/": [
+        "/^(?!bwc-kf-)[a-z]/"
+      ]
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "assets/css/tokens.css"
+      ],
+      "rules": {
+        "function-disallowed-list": [
+          "rgb",
+          "rgba",
+          "hsl",
+          "hsla"
+        ]
+      }
+    }
+  ]
+}

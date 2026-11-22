@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ruleset name="Admin Kit">
+	<description>Coding standards for Admin Kit.</description>
+
+	<file>src</file>
+	<file>bin/bwc-build</file>
+	<file>tests</file>
+	<file>gallery/bwc-gallery.php</file>
+	<file>gallery/settings-demo.php</file>
+	<file>gallery/list-demo.php</file>
+	<file>gallery/jobs-demo.php</file>
+	<file>gallery/report-demo.php</file>
+	<file>gallery/axe-check.php</file>
+	<file>gallery/class-demo-check-job.php</file>
+	<file>gallery/class-demo-fetch-job.php</file>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+	<arg name="basepath" value="."/>
+
+	<config name="testVersion" value="8.2-"/>
+	<config name="minimum_wp_version" value="6.9"/>
+
+	<rule ref="WordPress-Extra">
+		<!-- PSR-4 class files, not WordPress class-file naming. -->
+		<exclude name="WordPress.Files.FileName"/>
+	</rule>
+
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Hooks are named per plugin at runtime ({hook}_bwc_…), which the prefix check can't see. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals"/>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="bwc-admin-kit"/>
+				<element value="bwc-gallery"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

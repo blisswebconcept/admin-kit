@@ -1,0 +1,99 @@
+/**
+ * Admin Kit tokens.
+ *
+ * Every kit value lives here. Components use these custom properties only.
+ * bin/bwc-build scopes every rule to one plugin, so ".bwc-scope" below only
+ * matches that plugin's kit root elements.
+ *
+ * One look, WordPress's own: WordPress 7.1's design tokens (--wpds-*, from the
+ * wp-theme stylesheet) with the kit's values as fallbacks for older versions.
+ * The accent is the colour scheme the user picked in their profile
+ * (--wp-admin-theme-color, from wp-base-styles) unless the plugin sets its own;
+ * the darker and soft accents are mixed from it so they follow either way.
+ * Token names read from WordPress 7.1.3's design-tokens.css.
+ */
+
+.bwc-scope {
+	/* The scheme's colour (or the plugin's), no lighter than 50%: some schemes (Sunrise) are too light for text and button labels. */
+	--bwc-accent-source: var(--wp-admin-theme-color, var(--wpds-color-background-interactive-brand-strong, oklch(52.6% 0.123 251.6)));
+	--bwc-color-accent: oklch(from var(--bwc-accent-source) min(l, 0.5) c h);
+	--bwc-color-accent-strong: color-mix(in oklch, var(--bwc-color-accent) 82%, oklch(0% 0 0));
+	--bwc-color-accent-soft: color-mix(in oklch, var(--bwc-color-accent) 10%, var(--bwc-color-surface));
+	--bwc-color-backdrop: oklch(0% 0 0 / 0.35);
+	--bwc-color-on-accent: var(--wpds-color-foreground-interactive-brand-strong, oklch(100% 0 0));
+	--bwc-color-text: var(--wpds-color-foreground-content-neutral, oklch(25.3% 0.01 237));
+	--bwc-color-text-muted: var(--wpds-color-foreground-content-neutral-weak, oklch(44.6% 0.013 248));
+	--bwc-color-text-faint: oklch(51.6% 0.012 254);
+	--bwc-color-surface: var(--wpds-color-background-surface-neutral-strong, oklch(100% 0 0));
+	--bwc-color-surface-soft: var(--wpds-color-background-surface-neutral, oklch(97.5% 0.001 197));
+	--bwc-color-ground: var(--wpds-color-background-surface-neutral-weak, oklch(95.5% 0.001 286));
+	--bwc-color-border: var(--wpds-color-stroke-surface-neutral, oklch(89.9% 0.002 286));
+	--bwc-color-border-weak: var(--wpds-color-stroke-surface-neutral-weak, oklch(95.5% 0.001 286));
+	--bwc-color-border-strong: oklch(81.6% 0.005 265);
+	--bwc-color-control-border: var(--wpds-color-stroke-interactive-neutral, oklch(64.9% 0.008 258));
+	--bwc-color-focus: var(--bwc-color-accent);
+	--bwc-color-success: var(--wpds-color-foreground-content-success, oklch(46.5% 0.12 148));
+	--bwc-color-success-soft: var(--wpds-color-background-surface-success-weak, oklch(95.4% 0.025 150));
+	--bwc-color-success-border: var(--wpds-color-stroke-surface-success, oklch(80% 0.08 150));
+	--bwc-color-danger: oklch(51.6% 0.17 25);
+	--bwc-color-danger-text: var(--wpds-color-foreground-content-error, oklch(42% 0.14 25));
+	--bwc-color-danger-soft: var(--wpds-color-background-surface-error-weak, oklch(96.4% 0.013 10));
+	--bwc-color-danger-border: var(--wpds-color-stroke-surface-error, oklch(78% 0.08 18));
+	--bwc-color-warning-text: var(--wpds-color-foreground-content-warning, oklch(42% 0.1 60));
+	--bwc-color-warning-soft: var(--wpds-color-background-surface-warning-weak, oklch(98.2% 0.025 100));
+	--bwc-color-warning-pill: oklch(95.5% 0.04 85);
+	/* Fills for bars and meters: the text colours above are too dark to fill a shape, the soft ones too pale. */
+	--bwc-color-success-fill: oklch(62% 0.15 150);
+	--bwc-color-warning-fill: oklch(76% 0.15 75);
+	--bwc-color-warning-border: var(--wpds-color-stroke-surface-warning, oklch(83% 0.12 90));
+	--bwc-color-info-text: var(--wpds-color-foreground-content-info, oklch(46% 0.11 250));
+	--bwc-color-info-soft: var(--wpds-color-background-surface-info-weak, oklch(95% 0.017 245));
+	--bwc-color-purple: oklch(42% 0.13 300);
+	--bwc-color-purple-soft: oklch(94.5% 0.02 305);
+
+	/* Chart series: told apart by lightness as well as hue. Each is at least 3:1 against the surface. */
+	--bwc-color-chart-1: oklch(52.6% 0.123 251.6);
+	--bwc-color-chart-2: oklch(72% 0.14 60);
+	--bwc-color-chart-3: oklch(42% 0.13 300);
+	--bwc-color-chart-4: oklch(65% 0.11 175);
+	--bwc-color-chart-5: oklch(35% 0.06 240);
+	--bwc-color-chart-6: oklch(60% 0.16 15);
+
+	--bwc-radius-sm: var(--wpds-border-radius-sm, 4px);
+	--bwc-radius-md: var(--wpds-border-radius-md, 6px);
+	--bwc-radius-lg: var(--wpds-border-radius-lg, 10px);
+	--bwc-radius-xl: var(--wpds-border-radius-xl, 12px);
+	--bwc-radius-full: 999px;
+
+	--bwc-space-1: var(--wpds-dimension-gap-xs, 4px);
+	--bwc-space-2: var(--wpds-dimension-gap-sm, 8px);
+	--bwc-space-3: var(--wpds-dimension-gap-md, 12px);
+	--bwc-space-4: var(--wpds-dimension-gap-lg, 16px);
+	--bwc-space-5: var(--wpds-dimension-padding-xl, 20px);
+	--bwc-space-6: var(--wpds-dimension-gap-xl, 24px);
+
+	--bwc-font-family: var(--wpds-typography-font-family-body, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif);
+	--bwc-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	--bwc-font-size-sm: var(--wpds-typography-font-size-sm, 12px);
+	--bwc-font-size-md: var(--wpds-typography-font-size-md, 13px);
+	--bwc-font-size-base: 14px;
+	--bwc-font-size-lg: var(--wpds-typography-font-size-lg, 15px);
+	--bwc-font-size-xl: var(--wpds-typography-font-size-xl, 20px);
+	--bwc-font-size-2xl: 23px;
+	--bwc-font-weight-strong: var(--wpds-typography-font-weight-emphasis, 600);
+
+	--bwc-control-height: 40px;
+	--bwc-control-height-sm: 36px;
+	--bwc-focus-width: var(--wpds-border-width-focus, 2px);
+	--bwc-shadow-card: 0 1px 2px oklch(0% 0 0 / 0.05);
+	--bwc-shadow-raised: 0 -4px 14px oklch(0% 0 0 / 0.06);
+	--bwc-shadow-stuck: 0 4px 12px oklch(0% 0 0 / 0.08); /* Under the header bar while it stays at the top. */
+	--bwc-shadow-overlay: -8px 0 24px oklch(0% 0 0 / 0.12);
+	--bwc-shadow-knob: 0 1px 2px oklch(0% 0 0 / 0.2);
+	--bwc-opacity-inactive: 0.55;
+	--bwc-duration: var(--wpds-motion-duration-sm, 150ms);
+
+	@media (prefers-reduced-motion: reduce) {
+		--bwc-duration: 0ms;
+	}
+}

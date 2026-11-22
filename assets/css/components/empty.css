@@ -1,0 +1,53 @@
+/**
+ * Empty state and Placeholder.
+ */
+
+.bwc-empty {
+	margin: 0;
+	padding: 32px var(--bwc-space-4);
+	color: var(--bwc-color-text-muted);
+	text-align: center;
+}
+
+.bwc-empty__text {
+	margin: 0;
+}
+
+.bwc-empty__action {
+	margin-block-start: var(--bwc-space-3);
+}
+
+.bwc-empty--boxed {
+	border: 1px dashed var(--bwc-color-border-strong);
+	border-radius: var(--bwc-radius-lg);
+	background: var(--bwc-color-surface);
+}
+
+.bwc-empty--inline {
+	padding: 0;
+	text-align: start;
+}
+
+.bwc-placeholder {
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-lg);
+	background: var(--bwc-color-surface);
+	padding: 48px var(--bwc-space-6);
+	text-align: center;
+}
+
+.bwc-placeholder__lead {
+	margin: 0;
+	font-size: var(--bwc-font-size-lg);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-placeholder__text {
+	margin: var(--bwc-space-2) auto 0;
+	max-inline-size: 60ch;
+	color: var(--bwc-color-text-muted);
+}
+
+.bwc-placeholder__action {
+	margin-block-start: var(--bwc-space-4);
+}

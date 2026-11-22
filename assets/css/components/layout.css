@@ -1,0 +1,82 @@
+/**
+ * Layout helpers: Stack, Cluster, Grid and Split. Spacing between siblings belongs to these, never to the
+ * children's margins.
+ */
+
+.bwc-stack {
+	display: flex;
+	flex-direction: column;
+}
+
+/* The gap is the only space between a stack's children: paragraphs and lists drop WordPress's margins. */
+.bwc-scope .bwc-stack > * {
+	margin-block: 0;
+}
+
+.bwc-stack--gap-1 { gap: var(--bwc-space-1); }
+.bwc-stack--gap-2 { gap: var(--bwc-space-2); }
+.bwc-stack--gap-3 { gap: var(--bwc-space-3); }
+.bwc-stack--gap-4 { gap: var(--bwc-space-4); }
+.bwc-stack--gap-5 { gap: var(--bwc-space-5); }
+.bwc-stack--gap-6 { gap: var(--bwc-space-6); }
+
+.bwc-cluster {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.bwc-cluster--gap-1 { gap: var(--bwc-space-1); }
+.bwc-cluster--gap-2 { gap: var(--bwc-space-2); }
+.bwc-cluster--gap-3 { gap: var(--bwc-space-3); }
+.bwc-cluster--align-start { align-items: flex-start; }
+.bwc-cluster--align-baseline { align-items: baseline; }
+.bwc-cluster--between { justify-content: space-between; }
+.bwc-cluster--end { justify-content: flex-end; }
+
+.bwc-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+.bwc-grid--min-narrow { grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
+.bwc-grid--min-wide { grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+.bwc-grid--gap-2 { gap: var(--bwc-space-2); }
+.bwc-grid--gap-3 { gap: var(--bwc-space-3); }
+.bwc-grid--gap-4 { gap: var(--bwc-space-4); }
+
+@container bwc-screen (inline-size >= 960px) {
+	.bwc-grid--six {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+}
+
+.bwc-split {
+	container: bwc-split / inline-size;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: var(--bwc-space-6) 32px;
+}
+
+.bwc-split__side {
+	flex: 1 1 220px;
+	max-inline-size: 300px;
+	min-inline-size: 0;
+}
+
+.bwc-split--side-narrow .bwc-split__side {
+	flex-basis: 180px;
+	max-inline-size: 240px;
+}
+
+.bwc-split__main {
+	flex: 999 1 560px;
+	min-inline-size: 0;
+}
+
+@container bwc-split (inline-size < 760px) {
+	.bwc-split__side {
+		max-inline-size: none;
+	}
+}

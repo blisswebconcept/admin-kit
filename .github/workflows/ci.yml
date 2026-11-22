@@ -1,0 +1,38 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  php:
+    name: PHP standards, static analysis, build tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+          coverage: none
+      - run: composer install --no-interaction --no-progress
+      - run: vendor/bin/phpcs -q
+      - run: vendor/bin/phpstan analyse --memory-limit=1G --no-progress
+      - run: php tests/build/run.php
+
+  css:
+    name: CSS lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npx stylelint "assets/css/**/*.css"
+
+# The WordPress tests (tests/wp/run.php) need a WordPress site and run
+# locally through WP-CLI; see README.md.

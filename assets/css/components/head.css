@@ -1,0 +1,49 @@
+/**
+ * Page head.
+ */
+
+.bwc-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: var(--bwc-space-4);
+}
+
+.bwc-head__text {
+	min-inline-size: 0;
+}
+
+.bwc-scope .bwc-head__title {
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 1.25;
+}
+
+.bwc-scope h3.bwc-head__title {
+	font-size: 18px;
+	font-weight: var(--bwc-font-weight-strong);
+	line-height: 1.3;
+}
+
+.bwc-head__description {
+	margin: var(--bwc-space-2) 0 0;
+	max-inline-size: 75ch;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-lg);
+	line-height: 1.6;
+}
+
+.bwc-head__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-2) var(--bwc-space-3);
+}
+
+.bwc-head__meta {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}

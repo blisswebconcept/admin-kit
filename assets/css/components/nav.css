@@ -1,0 +1,95 @@
+/**
+ * Nav: tabs or a side menu.
+ */
+
+.bwc-nav {
+	position: relative; /* Badges' hidden text is absolutely positioned; keep it inside the scrolling row. */
+	display: flex;
+	gap: var(--bwc-space-1);
+}
+
+.bwc-nav--tabs {
+	min-inline-size: 0;
+	overflow-x: auto;
+}
+
+.bwc-nav--side {
+	flex-direction: column;
+	gap: 2px;
+}
+
+.bwc-scope .bwc-nav__item {
+	display: flex;
+	align-items: center;
+	gap: var(--bwc-space-2);
+	color: var(--bwc-color-text-muted);
+	text-decoration: none;
+	white-space: nowrap;
+
+	&:hover {
+		color: var(--bwc-color-text);
+	}
+
+	&:focus {
+		box-shadow: none;
+	}
+}
+
+/* Tabs: buttons, the current one filled. */
+.bwc-nav--tabs .bwc-nav__item {
+	border-radius: var(--bwc-radius-lg);
+	padding: var(--bwc-space-2) 14px;
+
+	/* Lighter than the current tab's grey, but still visible on the white bar. */
+	&:hover {
+		background: color-mix(in oklch, var(--bwc-color-ground) 60%, var(--bwc-color-surface));
+	}
+
+	&.is-current {
+		background: var(--bwc-color-ground);
+		color: var(--bwc-color-text);
+		font-weight: var(--bwc-font-weight-strong);
+	}
+}
+
+.bwc-nav--side .bwc-nav__item {
+	justify-content: space-between;
+	min-block-size: 44px;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	padding: var(--bwc-space-2) var(--bwc-space-3);
+	color: var(--bwc-color-text);
+	white-space: normal;
+
+	&:hover {
+		background: var(--bwc-color-ground);
+	}
+
+	&.is-current {
+		border-color: var(--bwc-color-border-strong);
+		background: var(--bwc-color-surface);
+		color: var(--bwc-color-accent-strong);
+		font-weight: var(--bwc-font-weight-strong);
+	}
+}
+
+.bwc-nav__badge {
+	border-radius: var(--bwc-radius-full);
+	background: var(--bwc-color-accent);
+	padding-inline: var(--bwc-space-2);
+	color: var(--bwc-color-on-accent);
+	font-size: var(--bwc-font-size-sm);
+	font-weight: var(--bwc-font-weight-strong);
+	line-height: 20px;
+}
+
+.bwc-nav__badge--danger {
+	background: var(--bwc-color-danger);
+}
+
+.bwc-nav__meta {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+	font-weight: 400;
+	white-space: nowrap;
+}

@@ -1,0 +1,392 @@
+/**
+ * Charts. The SVGs stretch to their box; strokes
+ * keep their width with vector-effect. Series colours come from the
+ * --bwc-color-chart-* tokens.
+ */
+
+.bwc-chart {
+	--bwc-chart-height: 200px;
+
+	position: relative;
+	container: bwc-chart / inline-size;
+	min-inline-size: 0;
+	margin: 0;
+}
+
+.bwc-chart--short {
+	--bwc-chart-height: 120px;
+}
+
+.bwc-chart--tall {
+	--bwc-chart-height: 280px;
+}
+
+.bwc-chart__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--bwc-space-2) var(--bwc-space-4);
+	margin-block-end: var(--bwc-space-4);
+}
+
+.bwc-chart__titles {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-inline-size: 0;
+}
+
+.bwc-chart__title {
+	color: var(--bwc-color-text);
+	font-size: var(--bwc-font-size-lg);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-chart__description {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+/* The plot: Y labels beside the canvas, X labels under it. */
+.bwc-chart__plot {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	column-gap: var(--bwc-space-2);
+	row-gap: 6px;
+}
+
+.bwc-chart__axis-y {
+	position: relative;
+	block-size: var(--bwc-chart-height);
+	min-inline-size: 24px;
+	color: var(--bwc-color-text-muted);
+	font-size: 11px;
+	font-variant-numeric: tabular-nums;
+	text-align: end;
+}
+
+.bwc-chart__tick {
+	position: absolute;
+	inset-inline-end: 0;
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.bwc-chart__tick--top {
+	inset-block-start: 0;
+	transform: translateY(-50%);
+}
+
+.bwc-chart__tick--middle {
+	inset-block-start: 50%;
+	transform: translateY(-50%);
+}
+
+.bwc-chart__tick--base {
+	inset-block-end: 0;
+	transform: translateY(50%);
+}
+
+.bwc-chart__canvas {
+	position: relative;
+	block-size: var(--bwc-chart-height);
+}
+
+.bwc-chart__svg {
+	position: absolute;
+	inset: 0;
+	inline-size: 100%;
+	block-size: 100%;
+	overflow: visible;
+}
+
+.bwc-chart__grid {
+	fill: none;
+	stroke: var(--bwc-color-border-weak);
+	stroke-width: 1px;
+}
+
+.bwc-chart__grid--base {
+	stroke: var(--bwc-color-border-strong);
+}
+
+.bwc-chart__axis-x {
+	display: flex;
+	grid-column: 2;
+	justify-content: space-between;
+	gap: var(--bwc-space-2);
+	color: var(--bwc-color-text-muted);
+	font-size: 11px;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+/* One label per column, centred under it. */
+.bwc-chart__axis-x--each {
+	justify-content: stretch;
+	gap: 0;
+
+	& span {
+		flex: 1 1 0;
+		min-inline-size: 0;
+		padding-inline: 2px;
+		overflow: hidden;
+		text-align: center;
+		text-overflow: ellipsis;
+	}
+}
+
+/* A narrow chart: every other bar label, so they don't run together. */
+@container bwc-chart (inline-size < 480px) {
+	.bwc-chart__axis-x--each span {
+		display: flex;
+		justify-content: center;
+		overflow: visible;
+
+		/* The shown labels spread over their hidden neighbours' room. */
+		&:nth-child(even) {
+			visibility: hidden;
+		}
+	}
+}
+
+/* Line and area. */
+.bwc-chart__area {
+	fill: var(--bwc-color-chart-1);
+	fill-opacity: 0.1;
+}
+
+.bwc-chart__line {
+	fill: none;
+	stroke: var(--bwc-color-chart-1);
+	stroke-width: 2px;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+}
+
+.bwc-chart__line--dashed {
+	stroke-dasharray: 4 3;
+}
+
+.bwc-chart__end {
+	fill: none;
+	stroke: var(--bwc-color-chart-1);
+	stroke-width: 9px;
+	stroke-linecap: round;
+}
+
+/* Hover zones: equal slots over the canvas, one per point. */
+.bwc-chart__hits {
+	position: absolute;
+	inset: 0;
+	display: flex;
+}
+
+.bwc-chart__hit {
+	position: relative;
+	flex: 1 1 0;
+
+	&:hover {
+		background: color-mix(in oklch, var(--bwc-color-chart-1) 7%, transparent);
+	}
+}
+
+/* Tooltips: above the hover zone or column, opening inwards near the edges. */
+.bwc-chart__tip {
+	position: absolute;
+	inset-block-end: calc(100% + 6px);
+	inset-inline-start: 50%;
+	z-index: 5;
+	display: none;
+	border-radius: var(--bwc-radius-md);
+	background: var(--bwc-color-text);
+	padding: 6px var(--bwc-space-2);
+	color: var(--bwc-color-surface);
+	font-size: var(--bwc-font-size-sm);
+	line-height: 1.4;
+	white-space: nowrap;
+	transform: translateX(-50%);
+	pointer-events: none;
+}
+
+.bwc-chart__tip--start {
+	inset-inline-start: 0;
+	transform: none;
+}
+
+.bwc-chart__tip--end {
+	inset-inline: auto 0;
+	transform: none;
+}
+
+.bwc-chart__hit:hover .bwc-chart__tip,
+.bwc-chart__column:hover .bwc-chart__tip,
+.bwc-chart__column:focus-visible .bwc-chart__tip {
+	display: block;
+}
+
+/* Bars: equal columns over the canvas. */
+.bwc-chart__columns {
+	position: absolute;
+	inset: 0;
+	display: flex;
+}
+
+.bwc-chart__column {
+	position: relative;
+	display: flex;
+	flex: 1 1 0;
+	min-inline-size: 0;
+	border-radius: var(--bwc-radius-sm);
+
+	&:hover,
+	&:focus-visible {
+		background: color-mix(in oklch, var(--bwc-color-chart-1) 7%, transparent);
+	}
+
+	&:focus-visible {
+		outline: var(--bwc-focus-width) solid var(--bwc-color-focus);
+		outline-offset: 2px;
+	}
+}
+
+.bwc-chart__stack {
+	display: flex;
+	flex: 1 1 auto;
+	justify-content: center;
+	min-inline-size: 0;
+	padding-inline: 15%;
+}
+
+.bwc-chart__bar,
+.bwc-chart__group-bar {
+	display: block;
+	flex: 1 1 0;
+	max-inline-size: 48px;
+
+	& svg {
+		display: block;
+		inline-size: 100%;
+		block-size: 100%;
+	}
+}
+
+.bwc-chart__group-bars {
+	display: flex;
+	flex: 1 1 auto;
+	justify-content: center;
+	gap: 2px;
+
+	& .bwc-chart__group-bar {
+		max-inline-size: 22px;
+	}
+}
+
+.bwc-chart__part {
+	fill: var(--bwc-color-chart-1);
+}
+
+.bwc-chart__part--s2 { fill: var(--bwc-color-chart-2); }
+.bwc-chart__part--s3 { fill: var(--bwc-color-chart-3); }
+.bwc-chart__part--s4 { fill: var(--bwc-color-chart-4); }
+.bwc-chart__part--s5 { fill: var(--bwc-color-chart-5); }
+.bwc-chart__part--s6 { fill: var(--bwc-color-chart-6); }
+
+/* "Show the numbers". */
+.bwc-chart__data {
+	margin-block-start: var(--bwc-space-4);
+
+	& .bwc-table-wrap {
+		margin-block-start: var(--bwc-space-2);
+	}
+}
+
+.bwc-scope .bwc-chart__data-summary {
+	color: var(--bwc-color-accent);
+	font-size: var(--bwc-font-size-md);
+	cursor: pointer;
+}
+
+/* Funnel: a list of meters, with no axes, so its plot is a plain block. */
+.bwc-chart--funnel .bwc-chart__plot {
+	display: block;
+}
+
+.bwc-funnel {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.bwc-funnel__step {
+	display: grid;
+	grid-template-columns: minmax(90px, 30%) minmax(80px, 1fr) auto;
+	align-items: center;
+	gap: var(--bwc-space-3);
+	margin: 0;
+	font-size: var(--bwc-font-size-md);
+
+	/* The bar fills its column; on its own it sizes to its content. */
+	& .bwc-bar {
+		display: flex;
+		inline-size: 100%;
+		min-inline-size: 0;
+	}
+}
+
+.bwc-funnel__count {
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+/* Sparkline: sits in a table cell. */
+.bwc-chart--spark {
+	display: inline-block;
+	inline-size: 100px;
+	block-size: 28px;
+	vertical-align: middle;
+
+	& .bwc-chart__line {
+		stroke-width: 1.5px;
+	}
+}
+
+/* Strip: covered runs on a track. */
+.bwc-chart--strip {
+	display: block;
+	inline-size: 100%;
+	min-inline-size: 120px;
+	block-size: 10px;
+	border-radius: var(--bwc-radius-full);
+	overflow: hidden;
+}
+
+.bwc-chart__track {
+	fill: var(--bwc-color-ground);
+}
+
+.bwc-chart__covered {
+	fill: var(--bwc-color-chart-1);
+}
+
+.bwc-chart__marker {
+	fill: none;
+	stroke: var(--bwc-color-text);
+	stroke-width: 2px;
+}
+
+/* A narrow chart (a half block, a phone): each step's label and count above its bar. */
+@container bwc-chart (inline-size < 420px) {
+	.bwc-funnel__step {
+		grid-template-columns: minmax(0, 1fr) auto;
+
+		& .bwc-bar {
+			grid-column: 1 / -1;
+			grid-row: 2;
+		}
+	}
+}

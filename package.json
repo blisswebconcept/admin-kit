@@ -1,0 +1,14 @@
+{
+  "name": "admin-kit",
+  "private": true,
+  "description": "Dev-only checks for Admin Kit. Nothing here is needed to build or release a plugin.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "lint:css": "stylelint \"assets/css/**/*.css\"",
+    "gallery:axe": "mkdir -p gallery/assets/vendor && cp node_modules/axe-core/axe.min.js gallery/assets/vendor/axe.min.js"
+  },
+  "devDependencies": {
+    "axe-core": "^4.14.1",
+    "stylelint": "^16.10.0"
+  }
+}

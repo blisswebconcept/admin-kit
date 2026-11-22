@@ -1,0 +1,810 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Admin Kit\n"
+"Report-Msgid-Bugs-To: https://github.com/blisswebconcept/admin-kit/issues\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-22T11:55:26+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: bwc-admin-kit\n"
+
+#: Service/Strings.php:43
+msgid "Save changes"
+msgstr ""
+
+#: Service/Strings.php:44
+msgid "Discard"
+msgstr ""
+
+#: Service/Strings.php:45
+msgid "All changes saved"
+msgstr ""
+
+#: Service/Strings.php:46
+msgid "You have unsaved changes"
+msgstr ""
+
+#: Service/Strings.php:47
+msgid "Settings saved."
+msgstr ""
+
+#: Service/Strings.php:48
+msgid "Find a setting"
+msgstr ""
+
+#: Service/Strings.php:49
+msgid "No setting matches that. Try another word, or pick a group on the left."
+msgstr ""
+
+#. translators: 1: features turned on, 2: features in the group.
+#: Service/Strings.php:51
+#, php-format
+msgid "%1$d of %2$d on"
+msgstr ""
+
+#. translators: %d: number of settings.
+#: Service/Strings.php:53
+#, php-format
+msgid "Turn on to change its %d setting."
+msgid_plural "Turn on to change its %d settings."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Service/Strings.php:54
+msgid "Paused"
+msgstr ""
+
+#: Service/Strings.php:55
+msgid "Advanced"
+msgstr ""
+
+#. translators: 1: first row shown, 2: last row shown, 3: rows in all.
+#: Service/Strings.php:57
+#, php-format
+msgid "Showing %1$s–%2$s of %3$s"
+msgstr ""
+
+#: Service/Strings.php:58
+msgid "Nothing to show."
+msgstr ""
+
+#: Service/Strings.php:59
+msgid "Clear filters"
+msgstr ""
+
+#: Service/Strings.php:60
+msgid "Filter"
+msgstr ""
+
+#: Service/Strings.php:61
+msgid "Previous page"
+msgstr ""
+
+#: Service/Strings.php:62
+msgid "Next page"
+msgstr ""
+
+#: Service/Strings.php:63
+msgid "First page"
+msgstr ""
+
+#: Service/Strings.php:64
+msgid "Last page"
+msgstr ""
+
+#: Service/Strings.php:65
+msgid "Current page"
+msgstr ""
+
+#. translators: 1: the box with the current page number, 2: number of pages.
+#: Service/Strings.php:67
+#, php-format
+msgctxt "paging"
+msgid "%1$s of %2$s"
+msgstr ""
+
+#. translators: 1: current page, 2: number of pages.
+#: Service/Strings.php:69
+#, php-format
+msgid "Page %1$s of %2$s"
+msgstr ""
+
+#. translators: %d: rows per page.
+#: Service/Strings.php:71
+#, php-format
+msgid "%d per page"
+msgstr ""
+
+#: Service/Strings.php:72
+msgid "Export CSV"
+msgstr ""
+
+#: Service/Strings.php:73
+msgid "Apply"
+msgstr ""
+
+#: Service/Strings.php:74
+msgid "Bulk actions"
+msgstr ""
+
+#: Service/Strings.php:75
+msgid "Copy"
+msgstr ""
+
+#: Service/Strings.php:76
+msgid "Copied"
+msgstr ""
+
+#: Service/Strings.php:77
+msgid "Stop"
+msgstr ""
+
+#: Service/Strings.php:78
+msgid "Lost touch with the server. Trying again."
+msgstr ""
+
+#: Service/Strings.php:79
+msgid "Done. Loading the results."
+msgstr ""
+
+#. translators: %d: number of items that failed.
+#: Service/Strings.php:81
+#, php-format
+msgid "Try the %d that failed again"
+msgid_plural "Try the %d that failed again"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: how long ago, such as "5 minutes".
+#: Service/Strings.php:83
+#, php-format
+msgid "Data read %s ago"
+msgstr ""
+
+#: Service/Strings.php:84
+msgid "Refresh data"
+msgstr ""
+
+#: Service/Strings.php:85
+msgid "Saved, but can't be read since the site's security keys changed. Enter it again."
+msgstr ""
+
+#: Service/Strings.php:86
+msgid "Remove"
+msgstr ""
+
+#: Service/Strings.php:87
+msgid "Close"
+msgstr ""
+
+#: Service/Strings.php:88
+msgid "Cancel"
+msgstr ""
+
+#: Service/Strings.php:89
+msgid "Delete this? It can't be undone."
+msgstr ""
+
+#: Service/Strings.php:90
+msgid "Back"
+msgstr ""
+
+#: Service/Strings.php:91
+msgid "That item no longer exists."
+msgstr ""
+
+#: Service/Strings.php:92
+msgid "to check"
+msgstr ""
+
+#: Service/Strings.php:93
+msgid "waiting"
+msgstr ""
+
+#: Service/Strings.php:94
+msgid "Paused:"
+msgstr ""
+
+#: Service/Strings.php:95
+msgid "Hide this notice"
+msgstr ""
+
+#. translators: %s: version number.
+#: Service/Strings.php:97
+#, php-format
+msgid "Version %s"
+msgstr ""
+
+#. translators: %s: version number, shown short in the screen's header bar.
+#: Service/Strings.php:99
+#, php-format
+msgid "v%s"
+msgstr ""
+
+#: Service/Strings.php:100
+msgid "On"
+msgstr ""
+
+#: Service/Strings.php:101
+msgid "Off"
+msgstr ""
+
+#: Service/Strings.php:102
+msgid "Pages"
+msgstr ""
+
+#: Service/Strings.php:103
+msgid "Newer"
+msgstr ""
+
+#: Service/Strings.php:104
+msgid "Older"
+msgstr ""
+
+#: Service/Strings.php:105
+msgid "Select all"
+msgstr ""
+
+#. translators: %s: what the row is, such as a link or offer name.
+#: Service/Strings.php:107
+#, php-format
+msgid "Select %s"
+msgstr ""
+
+#. translators: %s: column name.
+#: Service/Strings.php:109
+#, php-format
+msgid "Sort by %s, ascending"
+msgstr ""
+
+#. translators: %s: column name.
+#: Service/Strings.php:111
+#, php-format
+msgid "Sort by %s, descending"
+msgstr ""
+
+#: Service/Strings.php:112
+msgid "Expand all"
+msgstr ""
+
+#: Service/Strings.php:113
+msgid "Collapse all"
+msgstr ""
+
+#. translators: %s: what's folded, such as "14 offer links".
+#: Service/Strings.php:115
+#, php-format
+msgid "Show %s"
+msgstr ""
+
+#. translators: %s: what's folded, such as "14 offer links".
+#: Service/Strings.php:117
+#, php-format
+msgid "Hide %s"
+msgstr ""
+
+#: Service/Strings.php:118
+msgid "Couldn't copy. Select the text and copy it yourself."
+msgstr ""
+
+#. translators: %d: number of entries still shown after filtering.
+#: Service/Strings.php:120
+#, php-format
+msgid "%d shown"
+msgstr ""
+
+#: Service/Strings.php:121
+msgid "This can't be left empty."
+msgstr ""
+
+#: Service/Strings.php:122
+msgid "This needs to be ticked."
+msgstr ""
+
+#. translators: %s: the lowest number allowed.
+#: Service/Strings.php:124
+#, php-format
+msgid "Use %s or more."
+msgstr ""
+
+#. translators: %s: the highest number allowed.
+#: Service/Strings.php:126
+#, php-format
+msgid "Use %s or less."
+msgstr ""
+
+#. translators: %d: fewest characters allowed.
+#: Service/Strings.php:128
+#, php-format
+msgid "Use at least %d character."
+msgid_plural "Use at least %d characters."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: most characters allowed.
+#: Service/Strings.php:130
+#, php-format
+msgid "Use %d character or fewer."
+msgid_plural "Use %d characters or fewer."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Service/Strings.php:131
+msgid "That isn't in the format this needs."
+msgstr ""
+
+#: Service/Strings.php:132
+msgid "Enter a number."
+msgstr ""
+
+#. translators: %s: the lowest number allowed.
+#: Service/Strings.php:134
+#, php-format
+msgid "Set to %s, the least allowed."
+msgstr ""
+
+#. translators: %s: the highest number allowed.
+#: Service/Strings.php:136
+#, php-format
+msgid "Set to %s, the most allowed."
+msgstr ""
+
+#. translators: %s: the units allowed, such as "px, rem or %".
+#: Service/Strings.php:138
+#, php-format
+msgid "Use a number and one of these units: %s."
+msgstr ""
+
+#. translators: %s: the units allowed, such as "px, rem or %".
+#: Service/Strings.php:140
+#, php-format
+msgid "A number and %s."
+msgstr ""
+
+#: Service/Strings.php:141
+msgid "That isn't an email address."
+msgstr ""
+
+#: Service/Strings.php:142
+msgid "That isn't a web address."
+msgstr ""
+
+#: Service/Strings.php:143
+msgid "Use an address on this site."
+msgstr ""
+
+#. translators: %s: the lines that weren't saved.
+#: Service/Strings.php:145
+#, php-format
+msgid "These lines weren't saved: %s."
+msgstr ""
+
+#. translators: %d: how many were kept.
+#: Service/Strings.php:147
+#, php-format
+msgid "Only the first %d was kept."
+msgid_plural "Only the first %d were kept."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Service/Strings.php:148
+msgid "That choice isn't available. Pick one from the list."
+msgstr ""
+
+#: Service/Strings.php:149
+msgid "Use a time like 09:30."
+msgstr ""
+
+#. translators: %s: the site's timezone, such as "America/New_York" or "UTC+1".
+#: Service/Strings.php:151
+#, php-format
+msgid "In the site's timezone (%s)."
+msgstr ""
+
+#. translators: 1: what the message is about, such as "One", 2: the message.
+#: Service/Strings.php:153
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#. translators: 1: all but the last item, joined with commas, 2: the last item.
+#: Service/Strings.php:155
+#, php-format
+msgid "%1$s or %2$s"
+msgstr ""
+
+#. translators: %d: number of settings not saved.
+#: Service/Strings.php:157
+#, php-format
+msgid "%d setting wasn't saved. See the message below."
+msgid_plural "%d settings weren't saved. See the messages below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Service/Strings.php:158
+msgid "Choose…"
+msgstr ""
+
+#: Service/Strings.php:159
+msgid "That action isn't available any more. Go back and try again."
+msgstr ""
+
+#: Service/Strings.php:160
+msgid "Your account isn't allowed to do that."
+msgstr ""
+
+#: Service/Strings.php:161
+msgid "Your account isn't allowed to change these settings, so nothing was changed."
+msgstr ""
+
+#: Service/Strings.php:162
+msgid "That page was open too long, so the action didn't run. Go back, reload the page and try again."
+msgstr ""
+
+#: Service/Strings.php:163
+msgid "Are you sure?"
+msgstr ""
+
+#: Service/Strings.php:164
+msgid "Yes, go ahead"
+msgstr ""
+
+#. translators: %d: number of settings that weren't saved.
+#: Service/Strings.php:166
+#, php-format
+msgid "Settings saved, except %d that wasn't valid. It kept its old value."
+msgid_plural "Settings saved, except %d that weren't valid. They kept their old values."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Service/Strings.php:167
+msgid "Setting groups"
+msgstr ""
+
+#: Service/Strings.php:168
+msgid "Type a word…"
+msgstr ""
+
+#. translators: %s: name of another feature, such as "Voting".
+#: Service/Strings.php:170
+#, php-format
+msgid "Needs %s to be on."
+msgstr ""
+
+#: Service/Strings.php:171
+msgid "It's switched on but won't run until this is fixed:"
+msgstr ""
+
+#. translators: %s: the plugin's name.
+#: Service/Strings.php:173
+#, php-format
+msgid "%s sections"
+msgstr ""
+
+#: Service/Strings.php:174
+msgid "Reference"
+msgstr ""
+
+#: Service/Strings.php:175
+msgid "Search"
+msgstr ""
+
+#: Service/Strings.php:176
+msgid "All"
+msgstr ""
+
+#. translators: %s: what the list is filtered by, such as "Status".
+#: Service/Strings.php:178
+#, php-format
+msgid "%s: All"
+msgstr ""
+
+#: Service/Strings.php:179
+msgid "Sort by"
+msgstr ""
+
+#: Service/Strings.php:180
+msgid "Rows per page"
+msgstr ""
+
+#: Service/Strings.php:181
+msgid "Nothing matches these filters."
+msgstr ""
+
+#: Service/Strings.php:182
+msgid "Tick at least one row and choose what to do with them."
+msgstr ""
+
+#. translators: %d: number of fields that weren't valid.
+#: Service/Strings.php:184
+#, php-format
+msgid "Not saved: %d field needs fixing."
+msgid_plural "Not saved: %d fields need fixing."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Service/Strings.php:185
+msgid "Saved."
+msgstr ""
+
+#: Service/Strings.php:186
+msgid "Deleted."
+msgstr ""
+
+#: Service/Strings.php:187
+msgid "It couldn't be deleted. Reload the page and try again."
+msgstr ""
+
+#: Service/Strings.php:188
+msgid "Delete"
+msgstr ""
+
+#. translators: %d: number of rows folded away.
+#: Service/Strings.php:190
+#, php-format
+msgid "%d more"
+msgid_plural "%d more"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Service/Strings.php:191
+msgid "Progress"
+msgstr ""
+
+#: Service/Strings.php:192
+msgid "Finished."
+msgstr ""
+
+#: Service/Strings.php:193
+msgid "Stopped. What was done so far is kept."
+msgstr ""
+
+#: Service/Strings.php:194
+msgid "Some items were skipped because working on them kept stopping the request."
+msgstr ""
+
+#: Service/Strings.php:195
+msgid "Runs"
+msgstr ""
+
+#: Service/Strings.php:196
+msgid "Not known"
+msgstr ""
+
+#. translators: %s: the table's caption. Names the box a wide table scrolls in.
+#: Service/Strings.php:198
+#, php-format
+msgid "%s, table"
+msgstr ""
+
+#. translators: %s: the run's title.
+#: Service/Strings.php:200
+#, php-format
+msgid "%s: totals"
+msgstr ""
+
+#: Service/Strings.php:201
+msgid "Nothing has run yet."
+msgstr ""
+
+#: Service/Strings.php:202
+msgid "Pick a run to see what it did."
+msgstr ""
+
+#: Service/Strings.php:203
+msgid "Nothing of this kind in this run."
+msgstr ""
+
+#: Service/Strings.php:204
+msgid "Today"
+msgstr ""
+
+#: Service/Strings.php:205
+msgid "Yesterday"
+msgstr ""
+
+#: Service/Strings.php:206
+msgid "Summary"
+msgstr ""
+
+#: Service/Strings.php:207
+msgid "Show the numbers"
+msgstr ""
+
+#: Service/Strings.php:208
+msgid "(estimated)"
+msgstr ""
+
+#: Service/Strings.php:209
+msgid "When"
+msgstr ""
+
+#: Service/Strings.php:210
+msgid "Count"
+msgstr ""
+
+#: Service/Strings.php:211
+msgid "Group"
+msgstr ""
+
+#: Service/Strings.php:212
+msgid "Total"
+msgstr ""
+
+#. translators: %s: name of a wp-config.php constant.
+#: Service/Strings.php:214
+#, php-format
+msgid "Set in wp-config.php (%s)."
+msgstr ""
+
+#: Service/Strings.php:215
+msgid "Remove the saved key"
+msgstr ""
+
+#: Service/Strings.php:216
+msgid "Leave it empty to keep the saved key."
+msgstr ""
+
+#: Service/Strings.php:217
+msgid "This site can't store keys safely: PHP's sodium extension is missing. Ask your host to turn it on."
+msgstr ""
+
+#. translators: %s: name of a wp-config.php constant.
+#: Service/Strings.php:219
+#, php-format
+msgid "This site can't store keys safely. Add it to wp-config.php as %s instead."
+msgstr ""
+
+#: Service/Strings.php:220
+msgid "Search…"
+msgstr ""
+
+#. translators: %d: number of matches.
+#: Service/Strings.php:222
+#, php-format
+msgid "%d found"
+msgid_plural "%d found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Service/Strings.php:223
+msgid "Nothing found. Try another word."
+msgstr ""
+
+#. translators: %d: how many results are shown.
+#: Service/Strings.php:225
+#, php-format
+msgid "First %d shown. Type to narrow the list."
+msgstr ""
+
+#: Service/Strings.php:226
+msgid "The search didn't answer. Try again."
+msgstr ""
+
+#. translators: %s: name of a chosen item.
+#: Service/Strings.php:228
+#, php-format
+msgid "Remove %s"
+msgstr ""
+
+#: Service/Strings.php:229
+msgid "Chosen"
+msgstr ""
+
+#. translators: %d: number of items listed.
+#: Service/Strings.php:231
+#, php-format
+msgid "Showing the first %d. Turn on JavaScript to search them all."
+msgstr ""
+
+#. translators: %s: number of posts.
+#: Service/Strings.php:233
+#, php-format
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Service/Strings.php:234
+msgid "(no title)"
+msgstr ""
+
+#. translators: 1: item, 2: its new position.
+#: Service/Strings.php:236
+#, php-format
+msgid "%1$s moved to position %2$d"
+msgstr ""
+
+#. translators: 1: item, 2: position.
+#: Service/Strings.php:238
+#, php-format
+msgid "Move %1$s, position %2$d. Use the arrow keys."
+msgstr ""
+
+#: Service/Strings.php:239
+msgid "Add…"
+msgstr ""
+
+#: Service/Strings.php:240
+msgid "Drag to change the order, or use the arrow keys on a handle."
+msgstr ""
+
+#. translators: %s: the choices, joined with commas.
+#: Service/Strings.php:242
+#, php-format
+msgid "One per line, in order. You can use: %s."
+msgstr ""
+
+#: Service/Strings.php:243
+msgid "Add a row"
+msgstr ""
+
+#. translators: %d: row number.
+#: Service/Strings.php:245
+#, php-format
+msgid "Row %d"
+msgstr ""
+
+#. translators: %s: the row's new title, such as "Rule 2".
+#: Service/Strings.php:247
+#, php-format
+msgid "Moved. It is now %s."
+msgstr ""
+
+#. translators: %s: what was added, such as "Rule 3".
+#: Service/Strings.php:249
+#, php-format
+msgid "Added %s."
+msgstr ""
+
+#. translators: %s: what was removed, such as "Rule 3" or a page title.
+#: Service/Strings.php:251
+#, php-format
+msgid "Removed %s."
+msgstr ""
+
+#: Service/Strings.php:252
+msgid "Move up"
+msgstr ""
+
+#: Service/Strings.php:253
+msgid "Move down"
+msgstr ""
+
+#. translators: %d: most rows allowed.
+#: Service/Strings.php:255
+#, php-format
+msgid "Only the first %d row was kept."
+msgid_plural "Only the first %d rows were kept."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: row title, 2: field label, 3: message.
+#: Service/Strings.php:257
+#, php-format
+msgid "%1$s, %2$s: %3$s"
+msgstr ""
+
+#. translators: %s: the lines, joined with commas.
+#: Service/Strings.php:259
+#, php-format
+msgid "No account matches these, so they weren't saved: %s."
+msgstr ""
+
+#: Service/Strings.php:260
+msgid "Yes"
+msgstr ""
+
+#: Service/Strings.php:261
+msgid "No"
+msgstr ""
+
+#. translators: %s: name of a settings group, such as "Offers".
+#: Service/Strings.php:263
+#, php-format
+msgid "In %s"
+msgstr ""

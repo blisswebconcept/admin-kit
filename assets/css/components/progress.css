@@ -1,0 +1,162 @@
+/**
+ * Progress bar and job progress.
+ */
+
+/* Progress bar: a <meter> with the number beside it. */
+.bwc-bar {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--bwc-space-2);
+	min-inline-size: 120px;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+	font-variant-numeric: tabular-nums;
+}
+
+.bwc-bar__meter {
+	flex: 1 1 auto;
+	inline-size: 100%;
+	block-size: 6px;
+	border: 0;
+	border-radius: var(--bwc-radius-full);
+	background: var(--bwc-color-ground);
+	appearance: none;
+
+	&::-webkit-meter-bar {
+		border: 0;
+		border-radius: var(--bwc-radius-full);
+		background: var(--bwc-color-ground);
+	}
+
+	&::-webkit-meter-optimum-value,
+	&::-webkit-meter-suboptimum-value,
+	&::-webkit-meter-even-less-good-value {
+		border-radius: var(--bwc-radius-full);
+		background: var(--bwc-bar-colour, var(--bwc-color-accent));
+	}
+
+	&::-moz-meter-bar {
+		border-radius: var(--bwc-radius-full);
+		background: var(--bwc-bar-colour, var(--bwc-color-accent));
+	}
+}
+
+.bwc-bar--regular .bwc-bar__meter {
+	block-size: 10px;
+}
+
+.bwc-bar--success {
+	--bwc-bar-colour: var(--bwc-color-success-fill);
+}
+
+.bwc-bar--warning {
+	--bwc-bar-colour: var(--bwc-color-warning-fill);
+}
+
+.bwc-bar--danger {
+	--bwc-bar-colour: var(--bwc-color-danger);
+}
+
+/* Job progress: a card with the live line, the bar and Stop. */
+.bwc-job {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-3) var(--bwc-space-5);
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-xl);
+	background: var(--bwc-color-surface);
+	padding: var(--bwc-space-4) var(--bwc-space-5);
+	box-shadow: var(--bwc-shadow-card);
+}
+
+.bwc-job__body {
+	display: flex;
+	flex: 1 1 320px;
+	flex-direction: column;
+	gap: var(--bwc-space-2);
+	min-inline-size: 0;
+}
+
+.bwc-scope .bwc-job__line {
+	margin: 0;
+	color: var(--bwc-color-text);
+}
+
+.bwc-job__text {
+	color: var(--bwc-color-text-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.bwc-job__bar {
+	inline-size: 100%;
+	block-size: 8px;
+	border: 0;
+	border-radius: var(--bwc-radius-full);
+	background: var(--bwc-color-ground);
+	overflow: hidden;
+	appearance: none;
+
+	&::-webkit-progress-bar {
+		background: var(--bwc-color-ground);
+	}
+
+	&::-webkit-progress-value {
+		border-radius: var(--bwc-radius-full);
+		background: var(--bwc-color-accent);
+		transition: inline-size var(--bwc-duration) ease;
+	}
+
+	&::-moz-progress-bar {
+		border-radius: var(--bwc-radius-full);
+		background: var(--bwc-color-accent);
+	}
+}
+
+.bwc-job__actions {
+	display: flex;
+	gap: var(--bwc-space-2);
+}
+
+.bwc-job.is-retrying .bwc-job__text {
+	color: var(--bwc-color-warning-text);
+}
+
+.bwc-job.is-done .bwc-job__text {
+	color: var(--bwc-color-text);
+}
+
+/* No count yet (a job in stages): a stripe moves across, so it reads as working. */
+.bwc-job__bar:indeterminate {
+	background: linear-gradient(90deg, var(--bwc-color-ground) 0%, var(--bwc-color-accent) 50%, var(--bwc-color-ground) 100%) 0 0 / 40% 100% no-repeat, var(--bwc-color-ground);
+	animation: bwc-kf-indeterminate 1.4s ease-in-out infinite;
+
+	&::-webkit-progress-bar {
+		background: transparent;
+	}
+
+	&::-moz-progress-bar {
+		background: transparent;
+	}
+}
+
+@keyframes bwc-kf-indeterminate {
+	from {
+		background-position: -40% 0, 0 0;
+	}
+
+	to {
+		background-position: 140% 0, 0 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bwc-job__bar::-webkit-progress-value {
+		transition: none;
+	}
+
+	.bwc-job__bar:indeterminate {
+		background: var(--bwc-color-accent-soft);
+		animation-play-state: paused;
+	}
+}

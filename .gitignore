@@ -1,0 +1,9 @@
+/vendor/
+/node_modules/
+.DS_Store
+/gallery/vendor/
+/gallery/vendor-prefixed/
+/gallery/assets/bwc/
+/gallery/tools/
+/gallery/composer.lock
+/gallery/assets/vendor/

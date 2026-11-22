@@ -1,0 +1,95 @@
+/**
+ * Switch. The checkbox covers the whole switch,
+ * invisible, so a click anywhere toggles it; focus shows on the track.
+ */
+
+.bwc-switch {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--bwc-space-2);
+	min-block-size: 44px;
+	cursor: pointer;
+}
+
+.bwc-switch .bwc-switch__input {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	inline-size: 100%;
+	block-size: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+}
+
+.bwc-switch__state {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-switch__on {
+	display: none;
+}
+
+.bwc-switch__track {
+	position: relative;
+	flex: none;
+	inline-size: 36px;
+	block-size: 20px;
+	border-radius: var(--bwc-radius-full);
+	background: var(--bwc-color-control-border);
+	transition: background-color var(--bwc-duration);
+
+	&::before {
+		position: absolute;
+		inset-block-start: 2px;
+		inset-inline-start: 2px;
+		inline-size: 16px;
+		block-size: 16px;
+		border-radius: 50%;
+		background: var(--bwc-color-surface);
+		box-shadow: var(--bwc-shadow-knob);
+		content: "";
+		transition: translate var(--bwc-duration);
+	}
+}
+
+.bwc-switch__input:checked ~ .bwc-switch__state {
+	color: var(--bwc-color-text);
+
+	& .bwc-switch__on {
+		display: inline;
+	}
+
+	& .bwc-switch__off {
+		display: none;
+	}
+}
+
+.bwc-switch__input:checked ~ .bwc-switch__track {
+	background: var(--bwc-color-accent);
+
+	&::before {
+		translate: 16px 0;
+	}
+}
+
+.bwc-switch__input:checked ~ .bwc-switch__track:dir(rtl)::before {
+	translate: -16px 0;
+}
+
+.bwc-switch__input:focus-visible ~ .bwc-switch__track {
+	outline: var(--bwc-focus-width) solid var(--bwc-color-focus);
+	outline-offset: 2px;
+}
+
+.bwc-switch__input:disabled ~ .bwc-switch__track,
+.bwc-switch__input:disabled ~ .bwc-switch__state {
+	opacity: 0.5;
+}

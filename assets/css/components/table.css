@@ -1,0 +1,164 @@
+/**
+ * Table.
+ */
+
+.bwc-table-bulk {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-2);
+	margin-block-end: var(--bwc-space-3);
+}
+
+.bwc-table-wrap {
+	position: relative; /* Keeps hidden screen-reader text inside the scrolling box, so it can't widen the page. */
+	max-inline-size: 100%;
+	overflow-x: auto;
+}
+
+.bwc-table {
+	inline-size: 100%;
+	min-inline-size: 640px;
+	border-collapse: collapse;
+	font-size: var(--bwc-font-size-base);
+
+	& th {
+		border-block-end: 1px solid var(--bwc-color-border);
+		padding: 10px var(--bwc-space-3);
+		color: var(--bwc-color-text-muted);
+		font-size: var(--bwc-font-size-sm);
+		font-weight: var(--bwc-font-weight-strong);
+		text-align: start;
+		white-space: nowrap;
+	}
+
+	& td {
+		border-block-end: 1px solid var(--bwc-color-border-weak);
+		padding: var(--bwc-space-3);
+		vertical-align: middle;
+	}
+
+	& tbody tr:last-child td {
+		border-block-end: 0;
+	}
+}
+
+/* A code in a cell stays on one line ("SAVE20", not "SAV / E20"). */
+.bwc-table td code,
+.bwc-grouped td code {
+	white-space: nowrap;
+}
+
+.bwc-table--fluid {
+	min-inline-size: 0;
+}
+
+.bwc-table--wide {
+	min-inline-size: 900px;
+}
+
+.bwc-table--compact {
+	& th,
+	& td {
+		padding: 6px 10px;
+	}
+}
+
+.bwc-table__caption {
+	caption-side: top;
+	padding-block-end: var(--bwc-space-2);
+	color: var(--bwc-color-text);
+	font-weight: var(--bwc-font-weight-strong);
+	text-align: start;
+}
+
+.bwc-table__row {
+	&:hover {
+		background: var(--bwc-color-surface-soft);
+	}
+
+	&.is-current {
+		background: var(--bwc-color-accent-soft);
+
+		/* Muted grey is too faint on the accent tint. */
+		& .bwc-table__sub {
+			color: var(--bwc-color-text);
+		}
+	}
+
+	&.is-quiet {
+		color: var(--bwc-color-text-faint);
+
+		& .bwc-table__primary,
+		& .bwc-table__sub {
+			color: inherit;
+		}
+	}
+}
+
+.bwc-table .bwc-table__number {
+	font-variant-numeric: tabular-nums;
+	text-align: end;
+}
+
+.bwc-table .bwc-table__check {
+	padding-inline-end: 0;
+}
+
+.bwc-table__col--check {
+	inline-size: 40px;
+}
+
+.bwc-table__col--narrow {
+	inline-size: 90px;
+}
+
+.bwc-table__col--medium {
+	inline-size: 150px;
+}
+
+.bwc-table__col--wide {
+	inline-size: 260px;
+}
+
+.bwc-scope .bwc-table__sort {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--bwc-space-1);
+	color: inherit;
+	text-decoration: none;
+
+	&:hover,
+	&.is-current {
+		color: var(--bwc-color-text);
+	}
+
+	&:focus {
+		box-shadow: none;
+	}
+}
+
+.bwc-table__primary {
+	display: block;
+	color: var(--bwc-color-text);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-table__sub {
+	display: block;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-table__actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: var(--bwc-space-1);
+}
+
+.bwc-table .bwc-table__empty {
+	padding: var(--bwc-space-6);
+	color: var(--bwc-color-text-muted);
+	text-align: center;
+}

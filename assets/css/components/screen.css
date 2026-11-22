@@ -1,0 +1,171 @@
+/**
+ * Screen: the root of every kit admin page.
+ * Also the base every kit root shares: text, box sizing, focus, hidden.
+ */
+
+.bwc-scope {
+	color: var(--bwc-color-text);
+	font-family: var(--bwc-font-family);
+	font-size: var(--bwc-font-size-base);
+	line-height: 1.5;
+
+	& *,
+	& *::before,
+	& *::after {
+		box-sizing: border-box;
+	}
+
+	& :focus-visible {
+		outline: var(--bwc-focus-width) solid var(--bwc-color-focus);
+		outline-offset: 2px;
+		box-shadow: none;
+	}
+
+	& [hidden] {
+		display: none !important; /* stylelint-disable-line declaration-no-important -- hidden must beat any component's display. */
+	}
+}
+
+.bwc-screen {
+	/*
+	 * Where sticky parts stop (the settings menu, the log's runs) and where a
+	 * jump to a field lands: below the admin bar and, on wide screens, below
+	 * the header bar. Its height comes from the header's script
+	 * (--bwc-screen-bar-height); 72px is one row of it, for when the script
+	 * doesn't run.
+	 */
+	--bwc-admin-bar-height: var(--wp-admin--admin-bar--height, 32px);
+	--bwc-sticky-offset: 56px;
+
+	container: bwc-screen / inline-size;
+	max-inline-size: 1200px;
+	margin: 0 auto;
+	padding-block: var(--bwc-space-6) 48px;
+
+	& [id] {
+		scroll-margin-block-start: var(--bwc-sticky-offset);
+	}
+}
+
+/* Header bar: brand, page navigation, actions and version in one card. */
+.bwc-screen__bar {
+	display: flex;
+	align-items: center;
+	gap: var(--bwc-space-3) var(--bwc-space-6);
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-xl);
+	background: var(--bwc-color-surface);
+	padding: var(--bwc-space-4) var(--bwc-space-6);
+	box-shadow: var(--bwc-shadow-card);
+}
+
+/* The brand takes what the tabs don't need, down to 200px; its subtitle wraps first. */
+.bwc-screen__brand {
+	display: flex;
+	flex: 1 1 200px;
+	align-items: center;
+	gap: var(--bwc-space-3);
+	min-inline-size: 200px;
+}
+
+.bwc-screen__icon {
+	display: grid;
+	flex: none;
+	place-items: center;
+	inline-size: 36px;
+	block-size: 36px;
+	border-radius: 10px;
+	background: var(--bwc-color-accent);
+	color: var(--bwc-color-on-accent);
+
+	&:empty {
+		background: var(--bwc-color-ground);
+	}
+}
+
+.bwc-screen__titles {
+	min-inline-size: 0;
+}
+
+.bwc-screen .bwc-screen__title {
+	margin: 0;
+	padding: 0;
+	font-size: var(--bwc-font-size-xl);
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.bwc-screen__subtitle {
+	margin: 2px 0 0;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+}
+
+/* The tabs keep their own width; only once the brand is down to 200px do they scroll inside the bar, so they never push the version onto its own row. */
+.bwc-screen__nav {
+	display: flex;
+	flex: 0 1 auto;
+	min-inline-size: 0;
+}
+
+.bwc-screen__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-2);
+}
+
+.bwc-screen__version {
+	color: var(--bwc-color-text-faint);
+	font-size: var(--bwc-font-size-sm);
+	white-space: nowrap;
+}
+
+.bwc-screen .wp-header-end {
+	margin: 0;
+	border: 0;
+}
+
+.bwc-screen__content {
+	margin-block-start: var(--bwc-space-6);
+}
+
+/*
+ * Wide screens (WordPress's desktop admin, from 783px): the header bar stays
+ * under the admin bar while the page scrolls. Once stuck, its top corners go
+ * square (so nothing scrolls past them) and a soft shadow shows under it.
+ */
+@media (width >= 783px) {
+	.bwc-screen {
+		--bwc-sticky-offset: calc(var(--bwc-admin-bar-height) + var(--bwc-screen-bar-height, 72px) + var(--bwc-space-4));
+	}
+
+	.bwc-screen__bar {
+		position: sticky;
+		inset-block-start: var(--bwc-admin-bar-height);
+		z-index: 20;
+
+		&.is-stuck {
+			border-start-start-radius: 0;
+			border-start-end-radius: 0;
+			box-shadow: var(--bwc-shadow-stuck);
+		}
+	}
+}
+
+/* Narrow screens: the navigation gets its own row under the brand. */
+@container bwc-screen (inline-size < 782px) {
+	.bwc-screen__bar {
+		flex-wrap: wrap;
+		padding: var(--bwc-space-3) var(--bwc-space-4);
+	}
+
+	.bwc-screen__brand {
+		min-inline-size: 0;
+	}
+
+	.bwc-screen__nav {
+		flex-basis: 100%;
+		order: 3;
+	}
+}

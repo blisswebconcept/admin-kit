@@ -1,0 +1,184 @@
+/**
+ * Fields: the wrapper, check and switch rows,
+ * choice lists and pairs. Fieldsets are reset so a group looks like any field.
+ */
+
+.bwc-fields {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+	gap: var(--bwc-space-5) var(--bwc-space-6);
+
+	& > .bwc-notice {
+		grid-column: 1 / -1;
+	}
+}
+
+.bwc-fields__jump {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bwc-space-1) var(--bwc-space-3);
+}
+
+.bwc-field,
+.bwc-field__group {
+	min-inline-size: 0;
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+.bwc-field--wide {
+	grid-column: 1 / -1;
+}
+
+.bwc-field.is-inactive {
+	opacity: var(--bwc-opacity-inactive);
+}
+
+.bwc-scope .bwc-field__label {
+	display: block;
+	margin: 0 0 6px;
+	padding: 0;
+	color: var(--bwc-color-text);
+	font-size: var(--bwc-font-size-base);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-field__control {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-2);
+}
+
+.bwc-field__unit {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-scope .bwc-field__help,
+.bwc-scope .bwc-field__error,
+.bwc-scope .bwc-field__note {
+	margin: 6px 0 0;
+	font-size: var(--bwc-font-size-md);
+	line-height: 1.5;
+}
+
+.bwc-field__help {
+	color: var(--bwc-color-text-muted);
+}
+
+.bwc-field__help-line {
+	display: block;
+}
+
+.bwc-field__error {
+	color: var(--bwc-color-danger-text);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-field__note {
+	color: var(--bwc-color-warning-text);
+}
+
+/* Checkbox and switch rows: the box or switch with a bold title and a plain line. */
+.bwc-field__check {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	cursor: pointer;
+
+	& input {
+		flex: none;
+		margin: 2px 0 0;
+	}
+}
+
+.bwc-field__check-body {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.bwc-field__check-title {
+	color: var(--bwc-color-text);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-field__check-text {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-field__switch {
+	display: flex;
+	flex: 1 1 100%;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--bwc-space-4);
+}
+
+/* Choice lists: checkbox groups and radio buttons. */
+.bwc-choices {
+	display: grid;
+	gap: var(--bwc-space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.bwc-choices--columns-2,
+.bwc-choices--columns-3 {
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+}
+
+.bwc-choices__item {
+	margin: 0;
+}
+
+.bwc-choices__label {
+	display: inline-flex;
+	align-items: flex-start;
+	gap: var(--bwc-space-2);
+	cursor: pointer;
+
+	& input {
+		flex: none;
+		margin: 2px 0 0;
+	}
+
+	& code {
+		border-radius: var(--bwc-radius-sm);
+		background: var(--bwc-color-ground);
+		padding: 0 4px;
+		font-size: var(--bwc-font-size-sm);
+	}
+}
+
+.bwc-scope .bwc-choices__description {
+	margin: 2px 0 0;
+	padding-inline-start: 24px;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+/* Pairs: two small labelled halves side by side, stacked when narrow. */
+.bwc-pair {
+	display: grid;
+	flex: 1 1 100%;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+	gap: var(--bwc-space-3);
+}
+
+.bwc-pair__label {
+	display: block;
+	margin-block-end: var(--bwc-space-1);
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+/* Table layout (term edit form, profile): WordPress lays out the row; the kit styles the cell's content. */
+.bwc-field-row td > .bwc-field__control,
+.bwc-field-row td > .bwc-field__group {
+	max-inline-size: 520px;
+}

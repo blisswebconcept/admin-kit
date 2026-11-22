@@ -1,0 +1,92 @@
+/**
+ * Log screen: the runs beside the chosen run.
+ */
+
+.bwc-log-screen {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-5);
+}
+
+.bwc-log {
+	display: grid;
+	grid-template-columns: 280px minmax(0, 1fr);
+	align-items: start;
+	gap: var(--bwc-space-6);
+}
+
+.bwc-log__side {
+	position: sticky;
+	inset-block-start: var(--bwc-sticky-offset, 56px);
+	min-inline-size: 0;
+
+	/* No taller than the window below the admin bar and the header: a long page of runs scrolls on its own. */
+	max-block-size: calc(100vh - var(--bwc-sticky-offset, 56px) - var(--bwc-space-5));
+	overflow-y: auto;
+	overscroll-behavior: contain;
+
+	& .bwc-pagination {
+		margin-block-start: var(--bwc-space-3);
+	}
+}
+
+.bwc-log__main {
+	min-inline-size: 0;
+
+	& .bwc-tiles {
+		margin-block-end: var(--bwc-space-5);
+	}
+}
+
+.bwc-log__notes {
+	margin-block-end: var(--bwc-space-5);
+}
+
+.bwc-log__notes-title {
+	margin: 0 0 var(--bwc-space-2);
+	font-size: var(--bwc-font-size-md);
+	font-weight: 600;
+}
+
+.bwc-scope .bwc-log__notes-list {
+	margin: 0;
+	padding-inline-start: var(--bwc-space-5);
+	color: var(--bwc-color-text-muted);
+	list-style: disc;
+
+	& li {
+		margin-block: var(--bwc-space-1);
+	}
+}
+
+.bwc-log__tools {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--bwc-space-3);
+	margin-block-end: var(--bwc-space-4);
+}
+
+.bwc-log__entries {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-3);
+}
+
+.bwc-scope .bwc-log__empty {
+	margin: 0;
+	color: var(--bwc-color-text-muted);
+}
+
+@container bwc-screen (inline-size < 760px) {
+	.bwc-log {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.bwc-log__side {
+		position: static;
+		max-block-size: none;
+		overflow-y: visible;
+	}
+}

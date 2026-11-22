@@ -1,0 +1,43 @@
+/**
+ * Legend.
+ */
+
+.bwc-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bwc-space-2) var(--bwc-space-4);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-legend__item {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+}
+
+.bwc-legend__swatch {
+	--bwc-swatch: var(--bwc-color-chart-1);
+
+	inline-size: 14px;
+	block-size: 4px;
+	border-radius: 2px;
+	background: var(--bwc-swatch);
+}
+
+.bwc-legend__swatch--series-2 { --bwc-swatch: var(--bwc-color-chart-2); }
+.bwc-legend__swatch--series-3 { --bwc-swatch: var(--bwc-color-chart-3); }
+.bwc-legend__swatch--series-4 { --bwc-swatch: var(--bwc-color-chart-4); }
+.bwc-legend__swatch--series-5 { --bwc-swatch: var(--bwc-color-chart-5); }
+.bwc-legend__swatch--series-6 { --bwc-swatch: var(--bwc-color-chart-6); }
+
+/* A dashed line, for estimated or comparison series. */
+.bwc-legend__swatch--dashed {
+	block-size: 0;
+	border-block-start: 3px dashed var(--bwc-swatch);
+	border-radius: 0;
+	background: none;
+}

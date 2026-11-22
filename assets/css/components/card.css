@@ -1,0 +1,120 @@
+/**
+ * Card.
+ */
+
+.bwc-card {
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-lg);
+	background: var(--bwc-color-surface);
+
+	/* A card inside a card (or a large card) is grey, so it reads as a part of it. */
+	& .bwc-card {
+		background: var(--bwc-color-surface-soft);
+	}
+}
+
+.bwc-card--danger {
+	border-color: var(--bwc-color-danger-border);
+
+	& .bwc-card__title {
+		color: var(--bwc-color-danger-text);
+	}
+}
+
+.bwc-card__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--bwc-space-3);
+	padding: 18px var(--bwc-space-5) 0;
+}
+
+.bwc-card__titles {
+	min-inline-size: 0;
+}
+
+.bwc-scope .bwc-card__title {
+	margin: 0;
+	padding: 0;
+	font-size: var(--bwc-font-size-lg);
+	font-weight: var(--bwc-font-weight-strong);
+	line-height: 1.4;
+}
+
+.bwc-card__subtitle {
+	margin: var(--bwc-space-1) 0 0;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-card__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bwc-space-2);
+}
+
+.bwc-card__body {
+	padding: var(--bwc-space-4) var(--bwc-space-5) 18px;
+	overflow-wrap: break-word; /* A long address or error code wraps instead of running out of the card. */
+
+	& > :first-child {
+		margin-block-start: 0;
+	}
+
+	& > :last-child {
+		margin-block-end: 0;
+	}
+}
+
+.bwc-card__foot {
+	border-block-start: 1px solid var(--bwc-color-border-weak);
+	padding: var(--bwc-space-3) var(--bwc-space-5);
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+/* Large: a screen section. More room, a bigger title, a soft shadow. */
+.bwc-card--large {
+	container: bwc-card / inline-size;
+	border-radius: var(--bwc-radius-xl);
+	box-shadow: var(--bwc-shadow-card);
+
+	& .bwc-card__head {
+		padding: 28px 32px 0;
+	}
+
+	& .bwc-card__body {
+		padding: var(--bwc-space-5) 32px 32px;
+	}
+
+	& .bwc-card__foot {
+		padding: var(--bwc-space-4) 32px;
+	}
+}
+
+.bwc-scope .bwc-card--large .bwc-card__title {
+	font-size: 18px;
+}
+
+.bwc-card--large > .bwc-card__body:first-child {
+	padding-block-start: 32px;
+}
+
+@container bwc-card (inline-size < 560px) {
+	.bwc-card--large .bwc-card__head {
+		padding: var(--bwc-space-5) var(--bwc-space-5) 0;
+	}
+
+	.bwc-card--large .bwc-card__body {
+		padding: var(--bwc-space-4) var(--bwc-space-5) var(--bwc-space-5);
+	}
+
+	.bwc-card--large > .bwc-card__body:first-child {
+		padding-block-start: var(--bwc-space-5);
+	}
+
+	.bwc-card--large .bwc-card__foot {
+		padding-inline: var(--bwc-space-5);
+	}
+}

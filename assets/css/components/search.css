@@ -1,0 +1,40 @@
+/**
+ * Search.
+ */
+
+.bwc-search {
+	min-inline-size: 0;
+}
+
+.bwc-search__field {
+	position: relative;
+	display: block;
+}
+
+.bwc-search__icon {
+	position: absolute;
+	inset-block: 0;
+	inset-inline-start: 10px;
+	display: flex;
+	align-items: center;
+	color: var(--bwc-color-text-muted);
+	pointer-events: none;
+}
+
+.bwc-scope .bwc-search__input {
+	inline-size: 100%;
+	min-block-size: var(--bwc-control-height-sm);
+	margin: 0;
+	border: 1px solid var(--bwc-color-control-border);
+	border-radius: var(--bwc-radius-md);
+	background: var(--bwc-color-surface);
+	padding: 0 10px 0 34px;
+	color: var(--bwc-color-text);
+	font-size: var(--bwc-font-size-base);
+	box-shadow: none;
+
+	&:focus {
+		border-color: var(--bwc-color-accent);
+		box-shadow: none;
+	}
+}

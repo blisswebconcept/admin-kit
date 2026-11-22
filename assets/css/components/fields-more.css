@@ -1,0 +1,302 @@
+/**
+ * The harder fields: secret, pickers, ordered
+ * chips, repeater, and a radio option's own field.
+ */
+
+/* Secret: a password input and, once saved, a Remove box. */
+.bwc-secret {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-2) var(--bwc-space-4);
+
+	& .bwc-control {
+		flex: 1 1 260px;
+		max-inline-size: 420px;
+	}
+}
+
+.bwc-secret__remove {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-scope .bwc-secret__config {
+	margin: 0;
+	color: var(--bwc-color-text-muted);
+}
+
+/* Picker: chips, a search box and the results under it. */
+.bwc-picker {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-2);
+	max-inline-size: 520px;
+}
+
+.bwc-scope .bwc-picker__chosen {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.bwc-picker__chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	margin: 0;
+	border: 1px solid var(--bwc-color-border-strong);
+	border-radius: var(--bwc-radius-full);
+	background: var(--bwc-color-surface-soft);
+	padding-inline: var(--bwc-space-3) 2px;
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-scope .bwc-picker__remove,
+.bwc-scope .bwc-ordered__remove {
+	display: grid;
+	place-items: center;
+	inline-size: 28px;
+	block-size: 28px;
+	margin: 0;
+	border: 0;
+	border-radius: 50%;
+	background: none;
+	padding: 0;
+	color: var(--bwc-color-text-muted);
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+
+	&:hover {
+		background: var(--bwc-color-ground);
+		color: var(--bwc-color-text);
+	}
+}
+
+.bwc-picker__box {
+	position: relative;
+}
+
+.bwc-scope .bwc-picker__list {
+	position: absolute;
+	inset-block-start: 100%;
+	inset-inline: 0;
+	z-index: 20;
+	max-block-size: 280px;
+	margin: 4px 0 0;
+	border: 1px solid var(--bwc-color-border-strong);
+	border-radius: var(--bwc-radius-lg);
+	background: var(--bwc-color-surface);
+	padding: var(--bwc-space-1);
+	overflow-y: auto;
+	list-style: none;
+	box-shadow: var(--bwc-shadow-overlay);
+}
+
+.bwc-picker__option {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	border-radius: var(--bwc-radius-md);
+	padding: 6px var(--bwc-space-2);
+	cursor: pointer;
+
+	&:hover,
+	&[aria-selected="true"] {
+		background: var(--bwc-color-accent-soft);
+	}
+}
+
+.bwc-picker__detail {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+}
+
+.bwc-scope .bwc-picker__status,
+.bwc-scope .bwc-picker__more {
+	margin: 0;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+}
+
+.bwc-scope .bwc-picker__status:empty {
+	display: none;
+}
+
+/* Ordered chips. */
+.bwc-scope .bwc-ordered__list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.bwc-ordered__item {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin: 0;
+	border: 1px solid var(--bwc-color-border-strong);
+	border-radius: var(--bwc-radius-full);
+	background: var(--bwc-color-surface-soft);
+	padding: 2px;
+	font-size: var(--bwc-font-size-md);
+	cursor: grab;
+
+	&.is-dragging {
+		opacity: 0.5;
+	}
+
+	&.is-target {
+		border-color: var(--bwc-color-accent);
+		background: var(--bwc-color-accent-soft);
+	}
+}
+
+.bwc-scope .bwc-ordered__handle {
+	display: grid;
+	place-items: center;
+	inline-size: 28px;
+	block-size: 28px;
+	margin: 0;
+	border: 0;
+	border-radius: 50%;
+	background: none;
+	padding: 0;
+	color: var(--bwc-color-text-muted);
+	cursor: grab;
+
+	&:hover {
+		background: var(--bwc-color-ground);
+	}
+}
+
+.bwc-ordered__position {
+	color: var(--bwc-color-text-muted);
+	font-weight: var(--bwc-font-weight-strong);
+	font-variant-numeric: tabular-nums;
+}
+
+.bwc-ordered__name {
+	padding-inline-end: 2px;
+}
+
+.bwc-scope .bwc-ordered__controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-2) var(--bwc-space-3);
+	margin: var(--bwc-space-2) 0 0;
+}
+
+.bwc-ordered__hint,
+.bwc-scope .bwc-ordered__choices {
+	margin: var(--bwc-space-1) 0 0;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+}
+
+/* Repeater: rows of sub-fields. */
+.bwc-repeater {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	inline-size: 100%;
+	gap: var(--bwc-space-3);
+}
+
+.bwc-scope .bwc-repeater__rows {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-3);
+	align-self: stretch;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.bwc-repeater__row {
+	margin: 0;
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-lg);
+	background: var(--bwc-color-surface-soft);
+	padding: var(--bwc-space-3) var(--bwc-space-4) var(--bwc-space-4);
+}
+
+.bwc-repeater__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--bwc-space-2);
+	margin-block-end: var(--bwc-space-2);
+}
+
+.bwc-repeater__title {
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-repeater__actions {
+	display: inline-flex;
+	gap: 2px;
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+.bwc-repeater__remove {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-repeater__fields {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+	align-items: end;
+	gap: var(--bwc-space-3);
+}
+
+.bwc-repeater__field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-inline-size: 0;
+
+	& .bwc-control {
+		inline-size: 100%;
+		max-inline-size: none;
+	}
+}
+
+.bwc-repeater__label {
+	font-size: var(--bwc-font-size-sm);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+/* A radio option's own field, beside its text. */
+.bwc-choices__inline {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin-block-start: 6px;
+	margin-inline-start: 26px;
+
+	& .bwc-control {
+		inline-size: 6em;
+	}
+
+	&[inert] {
+		opacity: var(--bwc-opacity-inactive);
+	}
+}

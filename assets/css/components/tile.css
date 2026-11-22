@@ -1,0 +1,75 @@
+/**
+ * Tile and Tiles.
+ */
+
+.bwc-tiles {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+	gap: var(--bwc-space-3);
+}
+
+@container bwc-screen (inline-size >= 960px) {
+	.bwc-tiles--six {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+}
+
+.bwc-tile {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-lg);
+	background: var(--bwc-color-surface);
+	padding: 14px var(--bwc-space-4);
+	color: var(--bwc-color-text);
+	text-decoration: none;
+}
+
+.bwc-tile__label,
+.bwc-tile__note {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+}
+
+.bwc-tile__value {
+	font-size: 26px;
+	font-weight: var(--bwc-font-weight-strong);
+	font-variant-numeric: tabular-nums;
+	line-height: 1.2;
+}
+
+.bwc-tile--link:hover {
+	border-color: var(--bwc-color-control-border);
+}
+
+.bwc-tile--danger {
+	border-color: var(--bwc-color-danger-border);
+
+	& .bwc-tile__value {
+		color: var(--bwc-color-danger);
+	}
+}
+
+.bwc-tile--warning {
+	border-color: var(--bwc-color-warning-border);
+
+	& .bwc-tile__value {
+		color: var(--bwc-color-warning-text);
+	}
+}
+
+.bwc-tile--success .bwc-tile__value {
+	color: var(--bwc-color-success);
+}
+
+/* Soft: grey and smaller, for inside a card. The value shows first, by CSS order only. */
+.bwc-tile--soft {
+	border: 0;
+	background: var(--bwc-color-surface-soft);
+	padding: 10px var(--bwc-space-3);
+
+	& .bwc-tile__value {
+		order: -1;
+		font-size: 22px;
+	}
+}

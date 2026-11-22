@@ -1,0 +1,88 @@
+/**
+ * Pagination and copy button.
+ */
+
+.bwc-pagination {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--bwc-space-3);
+}
+
+.bwc-pagination__summary {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-pagination__nav {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-1);
+}
+
+/* The chevrons point forward; "first" and "previous" mirror them (and the other way round in right-to-left). */
+.bwc-pagination__first .bwc-icon,
+.bwc-pagination__prev .bwc-icon {
+	scale: -1 1;
+}
+
+.bwc-pagination__first:dir(rtl) .bwc-icon,
+.bwc-pagination__prev:dir(rtl) .bwc-icon {
+	scale: 1;
+}
+
+.bwc-pagination__next:dir(rtl) .bwc-icon,
+.bwc-pagination__last:dir(rtl) .bwc-icon {
+	scale: -1 1;
+}
+
+/* The page box: type a number and press Enter. */
+.bwc-pagination__jump {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0 var(--bwc-space-1);
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+	white-space: nowrap;
+}
+
+.bwc-scope .bwc-pagination__page {
+	inline-size: 52px;
+	min-block-size: 30px;
+	padding: 0 var(--bwc-space-1);
+	font-size: var(--bwc-font-size-md);
+	font-variant-numeric: tabular-nums;
+	text-align: center;
+	appearance: textfield;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		margin: 0;
+		appearance: none;
+	}
+}
+
+.bwc-copy__icon {
+	display: inline-flex;
+}
+
+.bwc-copy__done {
+	display: none;
+}
+
+.bwc-copy.is-copied {
+	border-color: var(--bwc-color-success-border);
+	background: var(--bwc-color-success-soft);
+	color: var(--bwc-color-success);
+
+	& .bwc-copy__icon {
+		display: none;
+	}
+
+	& .bwc-copy__done {
+		display: inline-flex;
+	}
+}

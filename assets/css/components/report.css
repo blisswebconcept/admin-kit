@@ -1,0 +1,212 @@
+/**
+ * Report and detail screens:
+ * report tabs, filters, the blocks in order, and the freshness line.
+ */
+
+.bwc-report {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-5);
+}
+
+.bwc-report__tabs {
+	display: flex;
+	min-inline-size: 0;
+}
+
+.bwc-report__toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: var(--bwc-space-3) var(--bwc-space-4);
+}
+
+.bwc-report__filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: var(--bwc-space-3);
+}
+
+.bwc-report__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-5);
+	min-inline-size: 0;
+}
+
+/* Two half blocks side by side. */
+.bwc-report__row {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+	gap: var(--bwc-space-5);
+	align-items: start;
+}
+
+.bwc-report__block {
+	min-inline-size: 0;
+
+	& > .bwc-card {
+		block-size: 100%;
+	}
+}
+
+.bwc-report__section {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-4);
+}
+
+.bwc-scope .bwc-report__section-title {
+	margin: var(--bwc-space-2) 0 0;
+	padding: 0;
+	font-size: var(--bwc-font-size-xl);
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.bwc-scope .bwc-report__section-intro {
+	max-inline-size: 72ch;
+	margin: calc(-1 * var(--bwc-space-2)) 0 0;
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-lg);
+}
+
+.bwc-report__notes {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-3);
+}
+
+/* Cards that link somewhere (a coupon, a lesson). */
+.bwc-report__cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+	gap: var(--bwc-space-3);
+}
+
+.bwc-scope .bwc-report__card {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-lg);
+	background: var(--bwc-color-surface);
+	padding: var(--bwc-space-3) var(--bwc-space-4);
+	color: var(--bwc-color-text);
+	text-decoration: none;
+
+	&:hover {
+		border-color: var(--bwc-color-border-strong);
+	}
+
+	&.is-current {
+		border-color: var(--bwc-color-accent);
+		box-shadow: inset 0 0 0 1px var(--bwc-color-accent);
+	}
+}
+
+.bwc-report__card-title {
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+.bwc-report__card-meta {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+/* Profile: avatar beside the facts. */
+.bwc-report__profile {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: var(--bwc-space-5);
+}
+
+.bwc-report__profile-body {
+	flex: 1 1 320px;
+	min-inline-size: 0;
+}
+
+.bwc-scope .bwc-report__profile-line {
+	margin: 0 0 var(--bwc-space-3);
+	color: var(--bwc-color-text-muted);
+}
+
+/* Progress: one bar per item. */
+.bwc-scope .bwc-report__progress {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.bwc-report__progress-item {
+	display: grid;
+	grid-template-columns: minmax(120px, 220px) minmax(0, 1fr) auto;
+	align-items: center;
+	gap: var(--bwc-space-3);
+	margin: 0;
+
+	& .bwc-bar {
+		display: flex;
+		inline-size: 100%;
+		min-inline-size: 0;
+	}
+}
+
+.bwc-report__progress-note {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+}
+
+/* "Data read 4 minutes ago · Refresh data". */
+.bwc-freshness {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bwc-space-3);
+	border-block-start: 1px solid var(--bwc-color-border-weak);
+	padding-block-start: var(--bwc-space-4);
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+}
+
+/* Detail: back link, title, blocks. */
+.bwc-detail {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bwc-space-4);
+}
+
+.bwc-scope .bwc-detail__back {
+	align-self: flex-start;
+	color: var(--bwc-color-accent);
+	font-size: var(--bwc-font-size-md);
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.bwc-scope .bwc-detail__title {
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 1.25;
+}
+
+@container bwc-screen (inline-size < 600px) {
+	.bwc-report__progress-item {
+		grid-template-columns: minmax(0, 1fr) auto;
+
+		& .bwc-bar {
+			grid-column: 1 / -1;
+			grid-row: 2;
+		}
+	}
+}

@@ -1,0 +1,109 @@
+/**
+ * Chips and segmented control.
+ */
+
+.bwc-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bwc-space-2);
+}
+
+.bwc-scope .bwc-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-block-size: 32px;
+	margin: 0;
+	border: 1px solid var(--bwc-color-border);
+	border-radius: var(--bwc-radius-full);
+	background: var(--bwc-color-surface);
+	padding: 0 var(--bwc-space-3);
+	color: var(--bwc-color-text);
+	font-family: inherit;
+	font-size: var(--bwc-font-size-md);
+	line-height: 1.2;
+	text-decoration: none;
+	cursor: pointer;
+
+	&:hover {
+		border-color: var(--bwc-color-control-border);
+	}
+
+	&:focus {
+		box-shadow: none;
+	}
+
+	&.is-current,
+	&[aria-pressed="true"] {
+		border-color: var(--bwc-color-accent);
+		background: var(--bwc-color-accent-soft);
+		color: var(--bwc-color-accent-strong);
+		font-weight: var(--bwc-font-weight-strong);
+
+		/* Muted grey is too faint on the accent tint. */
+		& .bwc-chip__count {
+			color: inherit;
+		}
+	}
+}
+
+.bwc-chip__count {
+	color: var(--bwc-color-text-muted);
+	font-weight: var(--bwc-font-weight-strong);
+	font-variant-numeric: tabular-nums;
+}
+
+.bwc-scope .bwc-chip--danger {
+	color: var(--bwc-color-danger-text);
+
+	& .bwc-chip__count {
+		color: var(--bwc-color-danger-text);
+	}
+
+	&.is-current,
+	&[aria-pressed="true"] {
+		border-color: var(--bwc-color-danger-border);
+		background: var(--bwc-color-danger-soft);
+		color: var(--bwc-color-danger-text);
+	}
+}
+
+.bwc-segmented {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 2px;
+	border-radius: var(--bwc-radius-lg);
+	background: var(--bwc-color-ground);
+	padding: 3px;
+}
+
+.bwc-scope .bwc-segmented__option {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	border-radius: var(--bwc-radius-md);
+	padding: 6px var(--bwc-space-3);
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-md);
+	font-weight: var(--bwc-font-weight-strong);
+	text-decoration: none;
+
+	&:hover {
+		color: var(--bwc-color-text);
+	}
+
+	&:focus {
+		box-shadow: none;
+	}
+
+	&.is-current {
+		background: var(--bwc-color-surface);
+		color: var(--bwc-color-text);
+		box-shadow: var(--bwc-shadow-card);
+	}
+}
+
+.bwc-segmented__count {
+	font-weight: 400;
+	font-variant-numeric: tabular-nums;
+}

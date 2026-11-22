@@ -1,0 +1,53 @@
+{
+    "name": "bliss-web-concept/admin-kit-gallery",
+    "description": "Dev-only plugin that shows every Admin Kit part. Uses the kit exactly as a real plugin does: Composer, Strauss, bwc-build.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "..",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "bliss-web-concept/admin-kit": "0.2.0"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "bliss-web-concept/admin-kit": "@dev"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "strauss": {
+            "target_directory": "vendor-prefixed",
+            "namespace_prefix": "BWCGallery\\Vendor\\",
+            "classmap_prefix": "BWCGallery_Vendor_",
+            "constant_prefix": "BWCGALLERY_",
+            "packages": [
+                "bliss-web-concept/admin-kit"
+            ],
+            "delete_vendor_packages": false
+        }
+    },
+    "scripts": {
+        "bwc-build": "@php vendor/bliss-web-concept/admin-kit/bin/bwc-build --id=bwc-gallery --out=assets/bwc",
+        "prefix": "@php tools/strauss.phar",
+        "post-install-cmd": [
+            "@bwc-build",
+            "@prefix"
+        ],
+        "post-update-cmd": [
+            "@bwc-build",
+            "@prefix"
+        ],
+        "refresh": [
+            "@php -r \"foreach (['vendor','vendor-prefixed'] as \\$d) { if (is_dir(\\$d)) { \\$i = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(\\$d, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST); foreach (\\$i as \\$f) { \\$f->isDir() ? rmdir(\\$f->getPathname()) : unlink(\\$f->getPathname()); } rmdir(\\$d); } } if (is_file('composer.lock')) { unlink('composer.lock'); }\"",
+            "@composer install --no-interaction"
+        ]
+    }
+}

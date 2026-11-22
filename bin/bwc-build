@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Builds one plugin's copy of the Admin Kit stylesheet and script.
+ *
+ *     bin/bwc-build --id=my-plugin --out=assets/bwc
+ *
+ * Run from the plugin folder after `composer install` and before Strauss
+ * deletes the original package. --src defaults to this kit's own folder.
+ *
+ * @package BlissWebConcept\AdminKit
+ */
+
+require_once dirname( __DIR__ ) . '/src/Build/Builder.php';
+
+$options = getopt( '', array( 'id:', 'out:', 'src::' ) );
+
+if ( empty( $options['id'] ) || empty( $options['out'] ) ) {
+	fwrite( STDERR, "Usage: bwc-build --id=<plugin-id> --out=<folder> [--src=<kit folder>]\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- CLI.
+	exit( 1 );
+}
+
+try {
+	$builder = new \BlissWebConcept\AdminKit\Build\Builder( (string) $options['id'] );
+	$paths   = $builder->build( (string) ( $options['src'] ?? dirname( __DIR__ ) ), (string) $options['out'] );
+} catch ( \Throwable $error ) {
+	fwrite( STDERR, $error->getMessage() . "\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- CLI.
+	exit( 1 );
+}
+
+echo 'Wrote ' . $paths['css'] . ' (' . filesize( $paths['css'] ) . ' bytes) and ' . $paths['js'] . ' (' . filesize( $paths['js'] ) . " bytes).\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CLI.

@@ -1,0 +1,47 @@
+/**
+ * Save bar: sticky at the bottom of a
+ * settings form, with the status, Discard and Save.
+ */
+
+.bwc-savebar {
+	position: sticky;
+	inset-block-end: 0;
+	z-index: 5;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-end;
+	gap: var(--bwc-space-3);
+	margin-block-start: var(--bwc-space-6);
+	border: 1px solid var(--bwc-color-border);
+	border-start-start-radius: var(--bwc-radius-xl);
+	border-start-end-radius: var(--bwc-radius-xl);
+	background: var(--bwc-color-surface);
+	padding: var(--bwc-space-3) var(--bwc-space-5);
+	box-shadow: var(--bwc-shadow-raised);
+}
+
+.bwc-savebar__status {
+	margin-inline-end: auto;
+	color: var(--bwc-color-text-muted);
+}
+
+.is-dirty .bwc-savebar__status {
+	color: var(--bwc-color-text);
+	font-weight: var(--bwc-font-weight-strong);
+}
+
+@container bwc-settings (inline-size < 560px) {
+	.bwc-savebar {
+		padding-inline: var(--bwc-space-4);
+	}
+
+	.bwc-savebar__status {
+		flex-basis: 100%;
+	}
+
+	.bwc-savebar .bwc-button {
+		flex: 1 1 0;
+		justify-content: center;
+	}
+}

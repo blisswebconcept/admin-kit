@@ -1,0 +1,29 @@
+/**
+ * Status dot.
+ */
+
+.bwc-dot {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.bwc-dot__mark {
+	flex: none;
+	inline-size: 8px;
+	block-size: 8px;
+	border-radius: 50%;
+	background: var(--bwc-color-control-border);
+}
+
+/* Fills, not text colours: WordPress's success text colour is too dark to read as green in a dot. */
+.bwc-dot--success .bwc-dot__mark { background: var(--bwc-color-success-fill); }
+.bwc-dot--warning .bwc-dot__mark { background: var(--bwc-color-warning-fill); }
+.bwc-dot--danger .bwc-dot__mark { background: var(--bwc-color-danger); }
+.bwc-dot--info .bwc-dot__mark { background: var(--bwc-color-info-text); }
+.bwc-dot--purple .bwc-dot__mark { background: var(--bwc-color-purple); }
+
+.bwc-dot--danger .bwc-dot__label {
+	color: var(--bwc-color-danger-text);
+	font-weight: var(--bwc-font-weight-strong);
+}

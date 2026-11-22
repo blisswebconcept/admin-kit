@@ -1,0 +1,119 @@
+/**
+ * Button.
+ */
+
+.bwc-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	min-block-size: var(--bwc-control-height-sm);
+	margin: 0;
+	border: 1px solid var(--bwc-color-control-border);
+	border-radius: var(--bwc-radius-md);
+	background: var(--bwc-color-surface);
+	padding: 0 14px;
+	color: var(--bwc-color-text);
+	font: inherit;
+	font-size: var(--bwc-font-size-base);
+	font-weight: var(--bwc-font-weight-strong);
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background-color var(--bwc-duration), border-color var(--bwc-duration), color var(--bwc-duration);
+
+	&:hover {
+		border-color: var(--bwc-color-text-muted);
+		background: var(--bwc-color-surface-soft);
+		color: var(--bwc-color-text);
+	}
+
+	&:focus {
+		box-shadow: none;
+	}
+
+	&[aria-pressed="true"] {
+		border-color: var(--bwc-color-border-strong);
+		background: var(--bwc-color-ground);
+	}
+}
+
+.bwc-button__icon {
+	display: inline-flex;
+}
+
+.bwc-button--primary {
+	border-color: var(--bwc-color-accent);
+	background: var(--bwc-color-accent);
+	color: var(--bwc-color-on-accent);
+
+	&:hover {
+		border-color: var(--bwc-color-accent-strong);
+		background: var(--bwc-color-accent-strong);
+		color: var(--bwc-color-on-accent);
+	}
+}
+
+.bwc-button--outline {
+	border-color: var(--bwc-color-accent);
+	background: transparent;
+	color: var(--bwc-color-accent);
+
+	&:hover {
+		border-color: var(--bwc-color-accent-strong);
+		background: var(--bwc-color-accent-soft);
+		color: var(--bwc-color-accent-strong);
+	}
+}
+
+.bwc-button--link {
+	min-block-size: 0;
+	border-color: transparent;
+	background: transparent;
+	padding-inline: var(--bwc-space-1);
+	color: var(--bwc-color-accent);
+	font-weight: 400;
+
+	&:hover {
+		border-color: transparent;
+		background: transparent;
+		color: var(--bwc-color-accent-strong);
+		text-decoration: underline;
+	}
+}
+
+.bwc-button--danger {
+	border-color: var(--bwc-color-danger-border);
+	color: var(--bwc-color-danger-text);
+
+	&:hover {
+		border-color: var(--bwc-color-danger);
+		background: var(--bwc-color-danger-soft);
+		color: var(--bwc-color-danger-text);
+	}
+}
+
+.bwc-button--small {
+	min-block-size: 30px;
+	padding-inline: 10px;
+	font-size: var(--bwc-font-size-md);
+}
+
+.bwc-button--icon {
+	inline-size: var(--bwc-control-height-sm);
+	padding: 0;
+
+	&.bwc-button--small {
+		inline-size: 30px;
+	}
+}
+
+/* Last, so a disabled primary or danger button is grey too. */
+.bwc-button:disabled,
+.bwc-button[aria-disabled="true"] {
+	border-color: var(--bwc-color-border);
+	background: var(--bwc-color-ground);
+	color: var(--bwc-color-text-faint);
+	cursor: not-allowed;
+}

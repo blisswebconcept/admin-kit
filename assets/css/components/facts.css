@@ -1,0 +1,41 @@
+/**
+ * Key-value list.
+ */
+
+.bwc-facts {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+	gap: var(--bwc-space-3) var(--bwc-space-6);
+	margin: 0;
+}
+
+.bwc-facts__item {
+	min-inline-size: 0;
+}
+
+.bwc-facts__label {
+	color: var(--bwc-color-text-muted);
+	font-size: var(--bwc-font-size-sm);
+}
+
+.bwc-facts__value {
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+
+.bwc-facts--rows {
+	grid-template-columns: minmax(0, 1fr);
+	gap: 0;
+
+	& .bwc-facts__item {
+		display: grid;
+		grid-template-columns: minmax(120px, 1fr) minmax(0, 2fr);
+		gap: var(--bwc-space-3);
+		border-block-end: 1px solid var(--bwc-color-border-weak);
+		padding-block: var(--bwc-space-2);
+	}
+
+	& .bwc-facts__label {
+		font-size: var(--bwc-font-size-md);
+	}
+}
